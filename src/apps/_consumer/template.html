@@ -1,0 +1,16 @@
+<c-navigation></c-navigation>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <div ng-if="!vm.view">
+                <c-dash></c-dash>
+            </div>
+
+            <ng-switch on="vm.view">
+                <c-articles ng-switch-when="articles"></c-articles>
+                <four-zero-four app="C" ng-switch-when="404"></four-zero-four>
+            </ng-switch>
+        </div>
+    </div>
+</div>

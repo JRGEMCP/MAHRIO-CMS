@@ -1,0 +1,32 @@
+{
+  "name": "mahrio-whichdegree",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "devDependencies": {
+    "angular": "^1.6.2",
+    "angular-route": "^1.6.2",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.26.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.10.0",
+    "html-loader": "^0.4.4",
+    "less": "^2.7.2",
+    "less-loader": "^2.2.3",
+    "mahrio": "https://github.com/JRGEMCP/mahrio.git",
+    "minimist": "^1.2.0",
+    "ng-annotate-webpack-plugin": "^0.2.1-pre",
+    "node-env-file": "^0.1.8",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.14.0"
+  },
+  "scripts": {
+    "build-prod": "./node_modules/.bin/webpack --production",
+    "build-watch": "./node_modules/.bin/webpack --watch",
+    "server": "node server/index.js",
+    "postinstall": "npm run build-prod"
+  },
+  "author": "",
+  "license": "ISC"
+}

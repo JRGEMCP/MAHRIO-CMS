@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+    <%- include includes/head.ejs %>
+<body>
+    <div id="seo-content">
+        <%- include transclude/content %>
+    </div>
+
+    <navigation></navigation>
+    <div id="ng-app" ng-view></div>
+
+    <div id="spinner-overlay"><div class="loader"></div></div>
+</body>
+    <%- include includes/ng-template.ejs %>
+
+    <%- include includes/scripts.ejs %>
+</html>
