@@ -46,19 +46,19 @@ require('mahrio')( process.env, __dirname ).then( function(server){
               topics: [],
               links: [
                 {
-                  href: "#mission",
+                  href: "/#mission",
                   text: "Mission"
                 },
                 {
-                  href: "#articles",
+                  href: "/#articles",
                   text: "Articles"
                 },
                 {
-                  href: "#contact",
+                  href: "/#contact",
                   text: "Contact"
                 },
                 {
-                  href: "#team",
+                  href: "/#team",
                   text: "Team"
                 }
               ],

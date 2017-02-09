@@ -13,7 +13,7 @@ var config = {
   entry: {
     marketing: ['./src/apps/marketing.js'],
     consumer: ['./src/apps/consumer.js'],
-    vendorJs: ["angular", "angular-route"],
+    vendorJs: ["angular", "angular-route", "angular-bootstrap"],
     vendorCss: './src/styles/vendor.style.less'
   },
 
@@ -33,7 +33,6 @@ var config = {
     new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
     new CopyWebpackPlugin([
       {from: './src/apps/consumer.html', to: './../user/'},
-      {from: './src/views', to: './../../views'},
       {from: './src/images', to: './../assets/'}
     ])
   ],

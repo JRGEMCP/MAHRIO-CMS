@@ -5,6 +5,7 @@
   "main": "webpack.config.js",
   "devDependencies": {
     "angular": "^1.6.2",
+    "angular-bootstrap": "^0.12.2",
     "angular-route": "^1.6.2",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.26.1",
@@ -19,6 +20,7 @@
     "ng-annotate-webpack-plugin": "^0.2.1-pre",
     "node-env-file": "^0.1.8",
     "style-loader": "^0.13.1",
+    "supervisor": "^0.12.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.14.0"
   },
@@ -26,6 +28,7 @@
     "build-prod": "./node_modules/.bin/webpack --production",
     "build-watch": "./node_modules/.bin/webpack --watch",
     "server": "node server/index.js",
+    "start": "supervisor -w . -i src,public -e ejs,js server.js",
     "postinstall": "npm run build-prod"
   },
   "author": "",

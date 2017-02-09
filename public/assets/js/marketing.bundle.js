@@ -1,24 +1,31 @@
-webpackJsonp([1,4],{
-
-/***/ 0:
+webpackJsonp([1,4],[
+/* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(99);
+	module.exports = __webpack_require__(18);
 
 
 /***/ },
-
-/***/ 87:
+/* 1 */,
+/* 2 */,
+/* 3 */,
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	angular.module('mahrio.shared', [])
+	angular.module('mahrio.shared', ['ui.bootstrap'])
+	  .component('modal', {
+	    template: __webpack_require__(5),
+	    controller: function(){
+	      console.log('inside modal');
+	    }
+	  })
 	  .directive('formInputTag', [ function( ){
 	    return {
 	      restrict: 'E',
 	      replace: true,
-	      template: __webpack_require__(88),
+	      template: __webpack_require__(6),
 	      scope: {
 	        in: '='
 	      },
@@ -44,13 +51,19 @@ webpackJsonp([1,4],{
 	          window.location.href = '/user/';
 	        }
 	      },
-	      template: __webpack_require__(89)
+	      template: __webpack_require__(7)
 	    }
 	  }])
 	  .directive('register', [ function(){
 	    return {
 	      restrict: 'E',
-	      template: __webpack_require__(90)
+	      template: __webpack_require__(8)
+	    }
+	  }])
+	  .directive('resetPassword', [function(){
+	    return {
+	      restrict: 'E',
+	      template: __webpack_require__(9)
 	    }
 	  }])
 	  .directive('contact', [function(){
@@ -59,7 +72,7 @@ webpackJsonp([1,4],{
 	      controller: function($scope){
 	
 	      },
-	      template: __webpack_require__(91)
+	      template: __webpack_require__(10)
 	    }
 	  }])
 	  .directive('fourZeroFour', [ function(){
@@ -68,52 +81,58 @@ webpackJsonp([1,4],{
 	      link: function (scope, element, attrs){
 	        scope.app = attrs['app'];
 	      },
-	      template: __webpack_require__(92)
+	      template: __webpack_require__(11)
 	    }
 	  }]);
 	
-	__webpack_require__(93);
+	__webpack_require__(12);
 	
 	module.exports = 'mahrio.shared';
 
 /***/ },
-
-/***/ 88:
+/* 5 */
 /***/ function(module, exports) {
 
-	module.exports = "<ng-form name=\"form\">\n    <div class=\"form-group\">\n        <label for=\"{{id}}\">\n            {{label}}\n        </label>\n        <div class=\"input-group\">\n            <input id=\"{{id}}\" type=\"{{type}}\" ng-model=\"in\" placeholder=\"{{placeholder}}\"\n                autocomplete=\"off\" autocorrect=\"off\" autocapitalize=\"off\" spellcheck=\"false\" class=\"form-control\"/>\n        </div>\n    </div>\n</ng-form>";
+	module.exports = "Modal";
 
 /***/ },
-
-/***/ 89:
+/* 6 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"container\">\n    <div class=\"container-body\">\n        <form novalidate ng-submit=\"login()\">\n            <h2 class=\"form-signin-heading\">Login</h2>\n\n            <form-input-tag in=\"session.email\" type=\"email\" label=\"Email\"></form-input-tag>\n\n            <form-input-tag in=\"session.password\" type=\"password\" label=\"Password\"></form-input-tag>\n\n            <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\">\n                Login\n            </button>\n            <br/>\n            <a href=\"/m/reset-password\">\n                Reset Password\n            </a>\n        </form>\n    </div>\n</div>";
+	module.exports = "<ng-form name=\"form\">\n    <div class=\"form-group\">\n        <label for=\"{{id}}\">\n            {{label}}\n        </label>\n        <input id=\"{{id}}\" type=\"{{type}}\" ng-model=\"in\" placeholder=\"{{placeholder}}\"\n               autocomplete=\"off\" autocorrect=\"off\" autocapitalize=\"off\" spellcheck=\"false\" class=\"form-control\"/>\n    </div>\n</ng-form>";
 
 /***/ },
-
-/***/ 90:
+/* 7 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"container\">\n    <div class=\"container-body\">\n        <form class=\"form-signin\">\n            <h2 class=\"form-signin-heading\">Register</h2>\n\n            <form-input-tag in=\"vm.user.fName\" label=\"First Name\"></form-input-tag>\n\n            <form-input-tag in=\"vm.user.lName\" label=\"Last Name\"></form-input-tag>\n\n            <form-input-tag in=\"vm.user.email\" type=\"email\" label=\"Email\"></form-input-tag>\n\n            <form-input-tag in=\"vm.user.password\" type=\"password\" label=\"Password\"></form-input-tag>\n\n            <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\">\n                register\n            </button>\n            <br/>\n            <a href=\"/m/login\">\n                Have an Account?\n            </a>\n        </form>\n    </div>\n</div>";
+	module.exports = "<div class=\"container content-table\">\n    <div class=\"container-body content-table-cell\">\n        <div class=\"row\">\n            <div class=\"col-md-4 col-md-offset-4\">\n                <form novalidate ng-submit=\"login()\">\n                    <h2 class=\"form-signin-heading\">Login</h2>\n\n                    <form-input-tag in=\"session.email\" type=\"email\" label=\"Email\"></form-input-tag>\n\n                    <form-input-tag in=\"session.password\" type=\"password\" label=\"Password\"></form-input-tag>\n\n                    <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\">\n                        Login\n                    </button>\n                    <br/>\n                    <div class=\"text-center\">\n                        <a href=\"/reset-password\">\n                            Reset Password\n                        </a>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n</div>";
 
 /***/ },
+/* 8 */
+/***/ function(module, exports) {
 
-/***/ 91:
+	module.exports = "<div class=\"container content-table\">\n    <div class=\"container-body content-table-cell\">\n        <div class=\"row\">\n            <div class=\"col-md-4 col-md-offset-4\">\n                <form class=\"form-signin\">\n                    <h2 class=\"form-signin-heading\">Register</h2>\n\n                    <form-input-tag in=\"vm.user.fName\" label=\"First Name\"></form-input-tag>\n\n                    <form-input-tag in=\"vm.user.lName\" label=\"Last Name\"></form-input-tag>\n\n                    <form-input-tag in=\"vm.user.email\" type=\"email\" label=\"Email\"></form-input-tag>\n\n                    <form-input-tag in=\"vm.user.password\" type=\"password\" label=\"Password\"></form-input-tag>\n\n                    <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\">\n                        Register\n                    </button>\n                    <br/>\n                    <div class=\"text-center\">\n                        <a href=\"/login\">\n                            Have an Account?\n                        </a>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n</div>";
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"container content-table\">\n    <div class=\"container-body content-table-cell\">\n        <div class=\"row\">\n            <div class=\"col-md-4 col-md-offset-4\">\n                <form class=\"form-signin\">\n                    <h2 class=\"form-signin-heading\">Reset Password</h2>\n\n                    <form-input-tag in=\"email\" type=\"email\" label=\"Email\"></form-input-tag>\n\n                    <div class=\"text-center\">\n                        <a href=\"#\" class=\"btn btn-lg btn-primary btn-block\">\n                            Reset\n                        </a>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n</div>";
+
+/***/ },
+/* 10 */
 /***/ function(module, exports) {
 
 	module.exports = "<section id=\"contact\" style=\"background: #e3e3e3;\">\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-lg-12 text-center\">\n                <h1>  CONTACT US</h1>\n                <hr class=\"section-divider\">\n                <h4>  Please tell us about your next career goals and we will let you know what we can do to help you.</h4>\n            </div>\n        </div>\n        <div class=\"row content-row\">\n            <div class=\"col-md-6\">\n                <div class=\"control-group\">\n                    <div class=\"form-group col-xs-12 floating-label-form-group controls\">\n                        <div class=\"row\">\n                            <div class=\"col-md-6\">\n                                <label>First Name</label>\n                                <input type=\"text\" class=\"form-control\">\n                            </div>\n                            <div class=\"col-md-6\">\n                                <label>Last Name</label>\n                                <input type=\"text\" class=\"form-control\">\n                            </div>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"control-group\">\n                    <div class=\"form-group col-xs-12 floating-label-form-group controls\">\n                        <label>  Email Address</label>\n                        <input type=\"email\" class=\"form-control\">\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-md-6\">\n                <div class=\"control-group\">\n                    <div class=\"form-group col-xs-12 floating-label-form-group controls\">\n                        <label>  Message</label>\n                        <textarea rows=\"5\" class=\"form-control\"></textarea>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-md-12 text-center clearfix\">\n                <div class=\"row form-group col-xs-6 col-xs-offset-3\">\n                    <hr class=\"featurette-divider\">\n                    <button class=\"btn btn-primary btn-block btn-lg\">  Send</button>\n                </div>\n            </div>\n            <div class=\"clearfix\"></div>\n        </div>\n    </div>\n</section>";
 
 /***/ },
-
-/***/ 92:
+/* 11 */
 /***/ function(module, exports) {
 
 	module.exports = "<h1>{{app}}: 404</h1>";
 
 /***/ },
-
-/***/ 93:
+/* 12 */
 /***/ function(module, exports) {
 
 	angular.module('mahrio.shared')
@@ -262,16 +281,20 @@ webpackJsonp([1,4],{
 	  }]);
 
 /***/ },
-
-/***/ 99:
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	angular.module('mahrio', [
 	  'ngRoute',
-	  __webpack_require__(87),
-	  __webpack_require__(100)
+	  __webpack_require__(4),
+	  __webpack_require__(19)
 	]).
 	config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
 	
@@ -282,8 +305,7 @@ webpackJsonp([1,4],{
 
 
 /***/ },
-
-/***/ 100:
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -320,6 +342,7 @@ webpackJsonp([1,4],{
 	      case 'articles':
 	      case 'login':
 	      case 'register':
+	      case 'reset-password':
 	        break;
 	      default:
 	        if( typeof this.view !== 'undefined' ){
@@ -335,7 +358,7 @@ webpackJsonp([1,4],{
 	      controller: function( $scope ){
 	
 	      },
-	      template: __webpack_require__(101),
+	      template: __webpack_require__(20),
 	      replace: true,
 	      transclude: true,
 	    }
@@ -347,7 +370,7 @@ webpackJsonp([1,4],{
 	      controller: function( $scope ){
 	
 	      },
-	      template: __webpack_require__(102),
+	      template: __webpack_require__(21),
 	      replace: true
 	    }
 	  }])
@@ -360,7 +383,7 @@ webpackJsonp([1,4],{
 	          $scope.header = $window.primaryMenu;
 	        }
 	      },
-	      template: __webpack_require__(103),
+	      template: __webpack_require__(22),
 	      replace: true
 	    }
 	  }]);;
@@ -368,27 +391,23 @@ webpackJsonp([1,4],{
 	module.exports = 'mahrio.marketing';
 
 /***/ },
-
-/***/ 101:
+/* 20 */
 /***/ function(module, exports) {
 
 	module.exports = "<ng-transclude></ng-transclude>\n";
 
 /***/ },
-
-/***/ 102:
+/* 21 */
 /***/ function(module, exports) {
 
 	module.exports = "<h1>M: Articles</h1>";
 
 /***/ },
-
-/***/ 103:
+/* 22 */
 /***/ function(module, exports) {
 
-	module.exports = "<header class=\"navbar navbar-inverse navbar-fixed-top\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <a class=\"navbar-brand\" href=\"/\">\n                {{header.brand}}\n            </a>\n        </div>\n        <nav>\n            <ul class=\"nav navbar-nav\">\n                <li class=\"nav-item\" ng-repeat=\"link in header.links\">\n                    <a class=\"nav-link\" href=\"{{link.href}}\">\n                        {{link.text}}\n                    </a>\n                </li>\n                <li ng-if=\"header.newsletter\">\n                    <a href=\"#newsletter\">\n                        Newsletter\n                    </a>\n                </li>\n\n                <li ng-if=\"header.social && header.social.fb\">\n                    <a ng-href=\"{{header.social.fb}}\" target=\"_blank\">\n                       <i class=\"fa fa-facebook-f\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.social && header.social.twitter\">\n                    <a ng-href=\"{{header.social.twitter}}\" target=\"_blank\">\n                        <i class=\"fa fa-twitter\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.social && header.social.github\">\n                    <a ng-href=\"{{header.social.github}}\" target=\"_blank\">\n                        <i class=\"fa fa-github\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.social && header.social.pinterest\">\n                    <a ng-href=\"{{header.social.pinterest}}\" target=\"_blank\">\n                        <i class=\"fa fa-pinterest\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.social && header.social.linkedIn\">\n                    <a ng-href=\"{{header.social.linkedIn}}\" target=\"_blank\">\n                        <i class=\"fa fa-linkedin\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.accounts\">\n                    <a href=\"#\">\n                        <i class=\"fa fa-lock\"></i>\n                        Account\n                    </a>\n                </li>\n            </ul>\n        </nav>\n    </div>\n</header>";
+	module.exports = "<header class=\"navbar navbar-inverse navbar-fixed-top\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <a class=\"navbar-brand\" href=\"/\">\n                {{header.brand}}\n            </a>\n        </div>\n        <nav>\n            <ul class=\"nav navbar-nav\">\n                <li class=\"nav-item\" ng-repeat=\"link in header.links\">\n                    <a class=\"nav-link\" href=\"{{link.href}}\">\n                        {{link.text}}\n                    </a>\n                </li>\n                <li ng-if=\"header.newsletter\">\n                    <a href=\"#newsletter\">\n                        Newsletter\n                    </a>\n                </li>\n\n                <li ng-if=\"header.social && header.social.fb\">\n                    <a ng-href=\"{{header.social.fb}}\" target=\"_blank\">\n                       <i class=\"fa fa-facebook-f\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.social && header.social.twitter\">\n                    <a ng-href=\"{{header.social.twitter}}\" target=\"_blank\">\n                        <i class=\"fa fa-twitter\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.social && header.social.github\">\n                    <a ng-href=\"{{header.social.github}}\" target=\"_blank\">\n                        <i class=\"fa fa-github\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.social && header.social.pinterest\">\n                    <a ng-href=\"{{header.social.pinterest}}\" target=\"_blank\">\n                        <i class=\"fa fa-pinterest\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.social && header.social.linkedIn\">\n                    <a ng-href=\"{{header.social.linkedIn}}\" target=\"_blank\">\n                        <i class=\"fa fa-linkedin\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.accounts\">\n                    <a href=\"/login\">\n                        Login\n                    </a>\n                </li>\n                <li ng-if=\"header.accounts\">\n                    <a href=\"/register\">\n                        Register\n                    </a>\n                </li>\n            </ul>\n        </nav>\n    </div>\n</header>";
 
 /***/ }
-
-});
+]);
 //# sourceMappingURL=marketing.bundle.js.map

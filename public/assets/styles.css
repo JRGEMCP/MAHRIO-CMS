@@ -9776,5 +9776,18 @@ section .section-divider {
   clear: both;
   padding: 30px;
 }
+.content-table {
+  display: table;
+  vertical-align: middle;
+  height: calc(100vh - 114px);
+  padding: 0;
+  margin-top: 57px;
+}
+.content-table-cell {
+  display: table-cell;
+  vertical-align: inherit;
+  padding: 10px;
+  max-width: 200px;
+}
 
 /*# sourceMappingURL=styles.css.map*/

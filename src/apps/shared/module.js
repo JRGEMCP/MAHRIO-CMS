@@ -1,6 +1,12 @@
 'use strict';
 
-angular.module('mahrio.shared', [])
+angular.module('mahrio.shared', ['ui.bootstrap'])
+  .component('modal', {
+    template: require('./modal/modal.html'),
+    controller: function(){
+      console.log('inside modal');
+    }
+  })
   .directive('formInputTag', [ function( ){
     return {
       restrict: 'E',
@@ -38,6 +44,12 @@ angular.module('mahrio.shared', [])
     return {
       restrict: 'E',
       template: require('./session/register.html')
+    }
+  }])
+  .directive('resetPassword', [function(){
+    return {
+      restrict: 'E',
+      template: require('./session/reset-password.html')
     }
   }])
   .directive('contact', [function(){

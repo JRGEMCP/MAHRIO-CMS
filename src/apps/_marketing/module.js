@@ -32,6 +32,7 @@ angular.module('mahrio.marketing', [ 'ngRoute'  ])
       case 'articles':
       case 'login':
       case 'register':
+      case 'reset-password':
         break;
       default:
         if( typeof this.view !== 'undefined' ){

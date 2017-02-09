@@ -1,6 +1,6 @@
 @import "~bootstrap/less/bootstrap";
 @import "~font-awesome/less/font-awesome";
-@import "../views/components/heading/style";
+@import "../../views/components/heading/style";
 
 section {
   padding: 100px 0;
@@ -9,4 +9,17 @@ section {
     clear: both;
     padding: 30px;
   }
+}
+.content-table {
+  display: table;
+  vertical-align: middle;
+  height: calc(~"100vh - 114px");
+  padding: 0;
+  margin-top: 57px;
+}
+.content-table-cell {
+  display: table-cell;
+  vertical-align: inherit;
+  padding: 10px;
+  max-width: 200px;
 }
