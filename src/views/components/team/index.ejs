@@ -8,20 +8,20 @@
             <div class="headline text-center withH2">
                 <h1>Meet Our Team</h1>
             </div>
-            <div class="team-profiles">
+            <div class="row">
                 <% for(var x = 0, l = team.members.length; x < l; x++){
                     var item = team.members[x]; %>
-                    <div class="profile">
-                        <div class="profile-wrapper img-rounded">
-                            <img src="<%=item.img%>" class="img-responsive">
-                            <div class="caption" style="bottom: -75px;">
-                                <div class="caption-text">
-                                    <div class="text-row-name"><%=item.name%></div>
-                                    <div class="text-row-role"><%=item.role%></div>
-                                </div>
+                <div class="col-md-4">
+                    <div class="profile-wrapper img-rounded">
+                        <img src="<%=item.img%>" class="img-responsive">
+                        <div class="caption" style="bottom: -75px;">
+                            <div class="caption-text">
+                                <div class="text-row-name"><%=item.name%></div>
+                                <div class="text-row-role"><%=item.role%></div>
                             </div>
                         </div>
                     </div>
+                </div>
                 <% } %>
             </div>
             <% if( team.careers ) { %>

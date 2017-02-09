@@ -244,7 +244,7 @@ require('mahrio')( process.env, __dirname ).then( function(server){
                   details: "Investor and entrepreneur with a successful history of founding innovative companies and building remarkable shareholder value",
                   role: "Co-founder / CEO",
                   name: "Erik Peterson",
-                  img: "https://pbs.twimg.com/profile_images/690597591495548929/2M8BZhKW.png"
+                  img: "https://mahrio-whichdegree.s3.amazonaws.com/users/56633c2d18a8db0300d40d65/profile/jesus-profile.jpg"
                 },
                 {
                   details: "Engineering and product management leader, from concept to delivery and customer experience management. Expertise in building enterprise/mobile applications and web scale systems. Deep interest in user experience and usability. Responsible for WhichDegree's product portfolio, defining feature roadmap and managing implementation, enabling end-users to easily onboard with their mobile devices.",
