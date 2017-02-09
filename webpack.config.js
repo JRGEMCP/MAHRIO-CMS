@@ -19,8 +19,7 @@ var config = {
 
   output: {
     path: path.join(__dirname, 'public/assets/'),
-    filename: '[name].bundle.js',
-    publicPath: 'public/assets/'
+    filename: 'js/[name].bundle.js'
   },
 
   resolve: {
@@ -47,11 +46,15 @@ var config = {
       },
       {
         test: /\.(otf|eot|svg|ttf|woff)/,
-        loader: 'url-loader?limit=8192'
+        loader: 'file?name=fonts/[name].[ext]'
       },
       {
         test: /\.less$/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader?name=./css/[hash].[txt]")
+      },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader?name=./css/[hash].[txt]")
       }
     ]
   }
