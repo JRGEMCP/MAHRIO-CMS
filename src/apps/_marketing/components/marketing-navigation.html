@@ -12,6 +12,43 @@
                         {{link.text}}
                     </a>
                 </li>
+                <li ng-if="header.newsletter">
+                    <a href="#newsletter">
+                        Newsletter
+                    </a>
+                </li>
+
+                <li ng-if="header.social && header.social.fb">
+                    <a ng-href="{{header.social.fb}}" target="_blank">
+                       <i class="fa fa-facebook-f"></i>
+                    </a>
+                </li>
+                <li ng-if="header.social && header.social.twitter">
+                    <a ng-href="{{header.social.twitter}}" target="_blank">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                </li>
+                <li ng-if="header.social && header.social.github">
+                    <a ng-href="{{header.social.github}}" target="_blank">
+                        <i class="fa fa-github"></i>
+                    </a>
+                </li>
+                <li ng-if="header.social && header.social.pinterest">
+                    <a ng-href="{{header.social.pinterest}}" target="_blank">
+                        <i class="fa fa-pinterest"></i>
+                    </a>
+                </li>
+                <li ng-if="header.social && header.social.linkedIn">
+                    <a ng-href="{{header.social.linkedIn}}" target="_blank">
+                        <i class="fa fa-linkedin"></i>
+                    </a>
+                </li>
+                <li ng-if="header.accounts">
+                    <a href="#">
+                        <i class="fa fa-lock"></i>
+                        Account
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

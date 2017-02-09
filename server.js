@@ -31,10 +31,10 @@ require('mahrio')( process.env, __dirname ).then( function(server){
           menus: [{
             content: {
               social: {
-                github: "",
+                github: "https://twitter.com/whichdegree",
                 twitter: "https://twitter.com/whichdegree",
-                pinterest: "",
-                linkedIn: "",
+                pinterest: "https://twitter.com/whichdegree",
+                linkedIn: "https://twitter.com/whichdegree",
                 fb: "https://www.facebook.com/WhichDegree/"
               },
               accounts: true,
@@ -42,7 +42,7 @@ require('mahrio')( process.env, __dirname ).then( function(server){
               mail: null,
               phone: null,
               search: false,
-              newsletter: false,
+              newsletter: true,
               topics: [],
               links: [
                 {
@@ -203,7 +203,7 @@ require('mahrio')( process.env, __dirname ).then( function(server){
             content: {
               statement: "To be your most trusted ally in your pursuit of higher education.",
               subHeading: "The fundamental purpose of our work",
-              heading: "Our Missions",
+              heading: "Our Mission",
               bg: "https://mahrio-whichdegree.s3.amazonaws.com/media/56633c2d18a8db0300d40d65/media/Slider1.jpg"
             },
             key: "mission-main"
@@ -236,6 +236,12 @@ require('mahrio')( process.env, __dirname ).then( function(server){
               ]
             },
             key: "article-main"
+          },{
+            content: {
+              subHeading: "Please tell us about your next career goals and we will let you know what we can do to help you.",
+              heading: "CONTACT US"
+            },
+            key: "contact-main"
           },{
             content: {
               heading: "Meet Our Team",
