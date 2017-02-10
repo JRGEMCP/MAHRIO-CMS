@@ -93,7 +93,7 @@ require('mahrio')( process.env, __dirname ).then( function(server){
                       text: "CHECK US OUT"
                     }
                   ],
-                  p: "We are sourcing business & financial networks, along with computer technology, to cultivate a community.\n\nCHECK US OUT",
+                  p: "We are sourcing business & financial networks, along with computer technology, to cultivate a community.",
                   h2: "GROW YOUR CONNECTIONS",
                   overlay: "rgba(0,0,0,.4)",
                   col: "cd-full-width",

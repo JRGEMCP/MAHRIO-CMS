@@ -125,7 +125,7 @@ webpackJsonp([0,4],{
 /***/ 88:
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n    <div class=\"modal-header\">\n        <h3 class=\"modal-title\" id=\"modal-title\">{{title}}</h3>\n    </div>\n    <div class=\"modal-body\" id=\"modal-body\">\n        <ng-transclude></ng-transclude>\n    </div>\n    <div class=\"modal-footer\">\n        <button class=\"btn btn-primary\" type=\"button\" ng-click=\"ok()\">OK</button>\n        <button class=\"btn btn-warning\" type=\"button\" ng-click=\"uibmodal.close()\">Cancel</button>\n    </div>\n</div>";
+	module.exports = "<div>\n    <div class=\"modal-header\">\n        <h3 class=\"modal-title\" id=\"modal-title\">{{title}}</h3>\n    </div>\n    <div class=\"modal-body\" id=\"modal-body\">\n        <ng-transclude></ng-transclude>\n    </div>\n    <div class=\"modal-footer\">\n        <div class=\"row\">\n            <div class=\"col-md-3 col-md-offset-6\">\n                <button class=\"btn btn-default btn-block\" type=\"button\" ng-click=\"uibmodal.close()\">Cancel</button>\n            </div>\n            <div class=\"col-md-3\">\n                <button class=\"btn btn-primary btn-block\" type=\"button\" ng-click=\"ok()\">OK</button>\n            </div>\n        </div>\n    </div>\n</div>";
 
 /***/ },
 
