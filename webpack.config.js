@@ -13,7 +13,7 @@ var config = {
   entry: {
     marketing: ['./src/apps/marketing.js'],
     consumer: ['./src/apps/consumer.js'],
-    vendorJs: ["angular", "angular-route", "angular-bootstrap"],
+    vendorJs: ["angular", "angular-route", "angular-ui-bootstrap"],
     vendorCss: './src/styles/vendor.style.less'
   },
 

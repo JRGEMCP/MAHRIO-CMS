@@ -1,12 +1,24 @@
 'use strict';
 
-angular.module('mahrio.shared', ['ui.bootstrap'])
-  .component('modal', {
-    template: require('./modal/modal.html'),
-    controller: function(){
-      console.log('inside modal');
-    }
-  })
+angular.module('mahrio.shared', [])
+  .directive('modal', [function(){
+    return {
+      restrict: 'E',
+      scope: {
+        uibmodal: '=',
+        modal: '=',
+        title: '@'
+      },
+      template: require('./modal/modal.html'),
+      transclude: true,
+      link: function(scope){
+        scope.ok = function(){
+          scope.$emit('modal:ok', scope.modal, scope.uibmodal.close);
+        }
+      },
+      replace: true
+    };
+  }])
   .directive('formInputTag', [ function( ){
     return {
       restrict: 'E',

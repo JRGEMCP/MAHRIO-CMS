@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mahrio.marketing', [ 'ngRoute'  ])
+angular.module('mahrio.marketing', [ 'ngRoute'])
   .config(['$routeProvider', function($routeProvider) {
 
     $routeProvider
@@ -50,7 +50,7 @@ angular.module('mahrio.marketing', [ 'ngRoute'  ])
       },
       template: require('./pages/home.html'),
       replace: true,
-      transclude: true,
+      transclude: true
     }
   }])
   .directive('articles', [ '$rootScope', function( $rootScope ){
@@ -64,7 +64,10 @@ angular.module('mahrio.marketing', [ 'ngRoute'  ])
       replace: true
     }
   }])
-  .directive('navigation', [ '$window', function($window){
+  .controller('NewsletterCtrl', [function(){
+    this.test = 1;
+  }])
+  .directive('navigation', [ '$window', '$uibModal', function($window, $uibModal){
     return {
       restrict: 'E',
       scope: {},
@@ -72,10 +75,36 @@ angular.module('mahrio.marketing', [ 'ngRoute'  ])
         if( $window.primaryMenu ) {
           $scope.header = $window.primaryMenu;
         }
+        $scope.newsletter = function(){
+          var modalInstance = $uibModal.open({
+            template: require('./components/newsletter.html'),
+            controller: 'NewsletterCtrl',
+            controllerAs: 'vm',
+            backdrop: 'static',
+            keyboard: false,
+            bindToController: true
+          });
+        }
       },
       template: require('./components/marketing-navigation.html'),
       replace: true
     }
-  }]);;
+  }])
+  .controller('NewsletterCtrl', ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance){
+    this.uibmodalinstance = $uibModalInstance;
+    $scope.modal = {};
+    $scope.alerts = [];
+    $scope.closeAlert = function(index) {
+      $scope.alerts.splice(index, 1);
+    };
+    $scope.$on('modal:ok', function($event, obj, close){
+      if( obj.email ) {
+        console.log( 'Newsletter Email: ', obj.email);
+        close();
+      } else {
+        $scope.alerts = [{type: 'danger', msg: 'Email cannot be empty'}];
+      }
+    });
+  }]);
 
 module.exports = 'mahrio.marketing';

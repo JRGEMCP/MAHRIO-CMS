@@ -97,10 +97,9 @@ angular.module('mahrio.shared')
             primaryNav.on('click', function(event){
               if($(event.target).is('.cd-primary-nav')) { $(this).children('ul').toggleClass('is-visible'); }
             });
-            console.log('ininiii');
+
             //change visible slide
             sliderNav.on('click', 'li', function(event){
-              console.log('inin');
               event.preventDefault();
               var selectedItem = $(this);
               if(!selectedItem.hasClass('selected')) {

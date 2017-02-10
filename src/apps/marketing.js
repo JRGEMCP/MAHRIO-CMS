@@ -2,6 +2,7 @@
 
 angular.module('mahrio', [
   'ngRoute',
+  'ui.bootstrap',
   require('./shared/module'),
   require('./_marketing/module')
 ]).
