@@ -11,9 +11,10 @@ var config = {
   devtool: 'source-map',
 
   entry: {
-    marketing: ['./src/apps/marketing.js'],
-    consumer: ['./src/apps/consumer.js'],
-    vendorJs: ["angular", "angular-route", "angular-ui-bootstrap"],
+    marketing: './src/apps/marketing.js',
+    consumer: './src/apps/consumer.js',
+    producer: './src/apps/producer.js',
+    vendorJs: ["angular", "angular-route", "angular-ui-bootstrap","jquery"],
     vendorCss: './src/styles/vendor.style.less'
   },
 
@@ -33,7 +34,8 @@ var config = {
     new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
     new CopyWebpackPlugin([
       {from: './src/apps/consumer.html', to: './../user/'},
-      {from: './src/images', to: './../assets/'}
+      {from: './src/apps/producer.html', to: './../publisher/'},
+      {from: './src/images', to: './../assets/images/'}
     ])
   ],
 

@@ -1,4 +1,4 @@
-<% if( typeof page !== 'undefined' ) {
+<% if( typeof page !== 'undefined' && page ) {
     for (var i = 0, l = page.sections.length; i < l; i++) {
         var key = page.sections[i].key.split('-');
         switch (key[0]) {

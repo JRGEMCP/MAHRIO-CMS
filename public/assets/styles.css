@@ -9769,6 +9769,48 @@ Javascript disabled
 .no-js .cd-slider-nav {
   display: none;
 }
+.bg-purple {
+  background-color: #ba68c8;
+}
+.bg-indigo {
+  background-color: #7986cb;
+}
+.bg-green {
+  background-color: #81c784;
+}
+.bg-orange {
+  background-color: #ffb74d;
+}
+.bg-red {
+  background-color: #e57373;
+}
+.bg-green-400 {
+  background-color: #66bb6a;
+}
+.bg-whitesmoke {
+  background-color: #F5F5F5;
+}
+.bg-white-dark-smoke {
+  background-color: #D7D7D7;
+}
+.bg-white {
+  background-color: #FFF;
+}
+.bg-white-snow {
+  background-color: #FAFAFA;
+}
+.navbar .main {
+  padding-top: 0;
+}
+.aside-menu {
+  margin-top: 55px;
+  float: left;
+  width: 250px;
+}
+.main {
+  margin-left: 250px;
+  padding-top: 60px;
+}
 section {
   padding: 100px 0;
 }

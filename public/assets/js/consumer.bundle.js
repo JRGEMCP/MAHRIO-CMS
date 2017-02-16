@@ -1,14 +1,6 @@
-webpackJsonp([0,4],{
+webpackJsonp([0,5],{
 
 /***/ 0:
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(86);
-
-
-/***/ },
-
-/***/ 86:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -85,9 +77,15 @@ webpackJsonp([0,4],{
 	      template: __webpack_require__(90)
 	    }
 	  }])
-	  .directive('register', [ function(){
+	  .directive('register', [ '$rootScope', function( $rootScope ){
 	    return {
 	      restrict: 'E',
+	      controller: function($scope){
+	        $scope.register = function(){
+	          $rootScope.setAuthorization( true );
+	          window.location.href = '/publisher/';
+	        }
+	      },
 	      template: __webpack_require__(91)
 	    }
 	  }])
@@ -106,17 +104,23 @@ webpackJsonp([0,4],{
 	      template: __webpack_require__(93)
 	    }
 	  }])
+	  .directive('asideMenu', [function(){
+	    return {
+	      restrict: 'E',
+	      template: __webpack_require__(94)
+	    }
+	  }])
 	  .directive('fourZeroFour', [ function(){
 	    return {
 	      restrict: 'E',
 	      link: function (scope, element, attrs){
 	        scope.app = attrs['app'];
 	      },
-	      template: __webpack_require__(94)
+	      template: __webpack_require__(95)
 	    }
 	  }]);
 	
-	__webpack_require__(95);
+	__webpack_require__(96);
 	
 	module.exports = 'mahrio.shared';
 
@@ -146,7 +150,7 @@ webpackJsonp([0,4],{
 /***/ 91:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"container content-table\">\n    <div class=\"container-body content-table-cell\">\n        <div class=\"row\">\n            <div class=\"col-md-4 col-md-offset-4\">\n                <form class=\"form-signin\">\n                    <h2 class=\"form-signin-heading\">Register</h2>\n\n                    <form-input-tag in=\"vm.user.fName\" label=\"First Name\"></form-input-tag>\n\n                    <form-input-tag in=\"vm.user.lName\" label=\"Last Name\"></form-input-tag>\n\n                    <form-input-tag in=\"vm.user.email\" type=\"email\" label=\"Email\"></form-input-tag>\n\n                    <form-input-tag in=\"vm.user.password\" type=\"password\" label=\"Password\"></form-input-tag>\n\n                    <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\">\n                        Register\n                    </button>\n                    <br/>\n                    <div class=\"text-center\">\n                        <a href=\"/login\">\n                            Have an Account?\n                        </a>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n</div>";
+	module.exports = "<div class=\"container content-table\">\n    <div class=\"container-body content-table-cell\">\n        <div class=\"row\">\n            <div class=\"col-md-4 col-md-offset-4\">\n                <form novalidate ng-submit=\"register()\">\n                    <h2 class=\"form-signin-heading\">Register</h2>\n\n                    <form-input-tag in=\"vm.user.fName\" label=\"First Name\"></form-input-tag>\n\n                    <form-input-tag in=\"vm.user.lName\" label=\"Last Name\"></form-input-tag>\n\n                    <form-input-tag in=\"vm.user.email\" type=\"email\" label=\"Email\"></form-input-tag>\n\n                    <form-input-tag in=\"vm.user.password\" type=\"password\" label=\"Password\"></form-input-tag>\n\n                    <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\">\n                        Register\n                    </button>\n                    <br/>\n                    <div class=\"text-center\">\n                        <a href=\"/login\">\n                            Have an Account?\n                        </a>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n</div>";
 
 /***/ },
 
@@ -167,11 +171,18 @@ webpackJsonp([0,4],{
 /***/ 94:
 /***/ function(module, exports) {
 
-	module.exports = "<h1>{{app}}: 404</h1>";
+	module.exports = "<div class=\"aside-menu\">\n    <uib-accordion close-others=\"true\">\n        <div uib-accordion-group class=\"panel-default\" heading=\"Categories\">\n            Article Categories\n        </div>\n        <div uib-accordion-group class=\"panel-default\" heading=\"Articles\">\n            <ul>\n                <li>\n                    <a>New</a>\n                </li>\n                <li>\n                    <a href=\"articles\">List</a>\n                </li>\n            </ul>\n        </div>\n    </uib-accordion>\n</div>";
 
 /***/ },
 
 /***/ 95:
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"container content-table\">\n    <div class=\"container-body content-table-cell\">\n        <div class=\"row\">\n            <div class=\"col-md-4 col-md-offset-4 text-center\">\n                <h1>{{app}}: 404</h1>\n            </div>\n        </div>\n    </div>\n</div>";
+
+/***/ },
+
+/***/ 96:
 /***/ function(module, exports) {
 
 	angular.module('mahrio.shared')

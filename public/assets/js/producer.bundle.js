@@ -1,4 +1,4 @@
-webpackJsonp([1,5],{
+webpackJsonp([2,5],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
@@ -9,7 +9,7 @@ webpackJsonp([1,5],{
 	  'ngRoute',
 	  'ui.bootstrap',
 	  __webpack_require__(87),
-	  __webpack_require__(102)
+	  __webpack_require__(107)
 	]).
 	config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
 	
@@ -332,44 +332,58 @@ webpackJsonp([1,5],{
 
 /***/ },
 
-/***/ 102:
+/***/ 107:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	angular.module('mahrio.marketing', [ 'ngRoute'])
+	angular.module('mahrio.producer', ['ngRoute'])
 	  .config(['$routeProvider', function($routeProvider) {
 	
 	    $routeProvider
 	      .when('/', {
-	        templateUrl: '/marketing.html',
-	        controller: 'MarketingCtrl',
+	        template: __webpack_require__(108),
+	        controller: 'ProducerCtrl',
 	        controllerAs: 'vm'
 	      })
 	      .when('/:route', {
-	        templateUrl: '/marketing.html',
-	        controller: 'MarketingCtrl',
+	        template: __webpack_require__(108),
+	        controller: 'ProducerCtrl',
 	        controllerAs: 'vm'
 	      });
 	  }])
 	
-	  .run(['$rootScope', '$http', function($rootScope, $http){
-	    $rootScope.setAuthorization = function( token ) {
-	      window.localStorage.Authorization = token;
-	    };
-	  }])
+	  .run( ['$rootScope', '$http', function( $rootScope, $http ) {
+	    $rootScope.getAuthorization = function( ) {
+	      var token = window.localStorage.Authorization;
+	      if( !token ) {
+	        return window.location.href = '/';
+	      } else {
+	        $http.defaults.headers.common.Authorization = token;
 	
-	  .controller('MarketingCtrl', [ '$routeParams', function( $routeParams ) {
+	        // $http.get('/api/users/me')
+	        //   .then( function(res){
+	        //     console.log( res );
+	        //   })
+	        //   .catch( function(err){
+	        //     console.log(err);
+	        //   });
+	      }
+	    };
+	    $rootScope.getAuthorization();
+	  }])
+	  .controller('ProducerCtrl', [ '$routeParams', function( $routeParams ) {
 	    this.view = $routeParams.route;
 	    if( typeof this.view === 'undefined'){
 	      return;
 	    }
 	    switch( this.view) {
 	      // LIST OF SUPPORTED PATHS
+	      case 'logout':
+	        delete window.localStorage.Authorization;
+	        window.location.href = '/';
+	        return;
 	      case 'articles':
-	      case 'login':
-	      case 'register':
-	      case 'reset-password':
 	        break;
 	      default:
 	        if( typeof this.view !== 'undefined' ){
@@ -378,103 +392,56 @@ webpackJsonp([1,5],{
 	        break;
 	    }
 	  }])
-	  .directive('home', [ '$rootScope', function( $rootScope ){
+	  .directive('pNavigation', [ function(){
 	    return {
 	      restrict: 'E',
-	      scope: {},
-	      controller: function( $scope ){
-	
-	      },
-	      template: __webpack_require__(103),
-	      replace: true,
-	      transclude: true
-	    }
-	  }])
-	  .directive('articles', [ '$rootScope', function( $rootScope ){
-	    return {
-	      restrict: 'E',
-	      scope: {},
-	      controller: function( $scope ){
-	
-	      },
-	      template: __webpack_require__(104),
+	      template: __webpack_require__(109),
 	      replace: true
 	    }
 	  }])
-	  .controller('NewsletterCtrl', [function(){
-	    this.test = 1;
-	  }])
-	  .directive('navigation', [ '$window', '$uibModal', function($window, $uibModal){
+	  .directive('pDash', [ function(){
 	    return {
 	      restrict: 'E',
-	      scope: {},
-	      controller: function( $scope ){
-	        if( $window.primaryMenu ) {
-	          $scope.header = $window.primaryMenu;
-	        }
-	        $scope.newsletter = function(){
-	          var modalInstance = $uibModal.open({
-	            template: __webpack_require__(105),
-	            controller: 'NewsletterCtrl',
-	            controllerAs: 'vm',
-	            backdrop: 'static',
-	            keyboard: false,
-	            bindToController: true
-	          });
-	        }
-	      },
-	      template: __webpack_require__(106),
-	      replace: true
+	      template: __webpack_require__(110)
 	    }
 	  }])
-	  .controller('NewsletterCtrl', ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance){
-	    this.uibmodalinstance = $uibModalInstance;
-	    $scope.modal = {};
-	    $scope.alerts = [];
-	    $scope.closeAlert = function(index) {
-	      $scope.alerts.splice(index, 1);
-	    };
-	    $scope.$on('modal:ok', function($event, obj, close){
-	      if( obj.email ) {
-	        console.log( 'Newsletter Email: ', obj.email);
-	        close();
-	      } else {
-	        $scope.alerts = [{type: 'danger', msg: 'Email cannot be empty'}];
-	      }
-	    });
+	  .directive('pArticles', [ function(){
+	    return {
+	      restrict: 'E',
+	      template: __webpack_require__(111)
+	    }
 	  }]);
-	
-	module.exports = 'mahrio.marketing';
+	module.exports = 'mahrio.producer';
 
 /***/ },
 
-/***/ 103:
+/***/ 108:
 /***/ function(module, exports) {
 
-	module.exports = "<ng-transclude></ng-transclude>\n";
+	module.exports = "<p-navigation></p-navigation>\n\n<div class=\"container-fluid\">\n    <div class=\"row\">\n        <aside-menu>\n        </aside-menu>\n\n        <div class=\"main padding-top-57\">\n            <div class=\"container-fluid\">\n                <div ng-if=\"!vm.view\">\n                    <p-dash></p-dash>\n                </div>\n\n                <ng-switch on=\"vm.view\">\n                    <p-articles ng-switch-when=\"articles\"></p-articles>\n                    <four-zero-four app=\"P\" ng-switch-when=\"404\"></four-zero-four>\n                </ng-switch>\n            </div>\n        </div>\n    </div>\n</div>\n";
 
 /***/ },
 
-/***/ 104:
+/***/ 109:
 /***/ function(module, exports) {
 
-	module.exports = "<h1>M: Articles</h1>";
+	module.exports = "<nav class=\" bg-whitesmoke navbar navbar-light navbar-fixed-top no-radius\">\n    <a class=\"navbar-brand\" href=\"/publisher/\">\n        Publisher\n    </a>\n    <div class=\"navbar-toggleable-md pull-right\" id=\"navbar-header\">\n        <ul class=\"nav navbar-nav\">\n            <li class=\"nav-item\">\n                <a class=\"nav-link\" href=\"/publisher/logout\">\n                    Logout\n                </a>\n            </li>\n        </ul>\n    </div>\n</nav>";
 
 /***/ },
 
-/***/ 105:
+/***/ 110:
 /***/ function(module, exports) {
 
-	module.exports = "<div style=\"padding:15px;\" ng-if=\"alerts.length\">\n    <div uib-alert ng-repeat=\"alert in alerts\" ng-class=\"'alert-' + (alert.type || 'warning')\"\n         close=\"closeAlert($index)\">{{alert.msg}}\n    </div>\n</div>\n\n<modal uibmodal=\"vm.uibmodalinstance\" modal=\"modal\" title=\"Newsletter\">\n    <form-input-tag in=\"modal.email\" type=\"email\" label=\"Email\"></form-input-tag>\n</modal>\n";
+	module.exports = "Dashboard";
 
 /***/ },
 
-/***/ 106:
+/***/ 111:
 /***/ function(module, exports) {
 
-	module.exports = "<header class=\"navbar navbar-inverse navbar-fixed-top\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <a class=\"navbar-brand\" href=\"/\">\n                {{header.brand}}\n            </a>\n        </div>\n        <nav>\n            <ul class=\"nav navbar-nav\">\n                <li class=\"nav-item\" ng-repeat=\"link in header.links\">\n                    <a class=\"nav-link\" href=\"{{link.href}}\">\n                        {{link.text}}\n                    </a>\n                </li>\n                <li ng-if=\"header.newsletter\">\n                    <a ng-click=\"newsletter()\" href=\"javascript:void(0)\">\n                        Newsletter\n                    </a>\n                </li>\n\n                <li ng-if=\"header.social && header.social.fb\">\n                    <a ng-href=\"{{header.social.fb}}\" target=\"_blank\">\n                       <i class=\"fa fa-facebook-f\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.social && header.social.twitter\">\n                    <a ng-href=\"{{header.social.twitter}}\" target=\"_blank\">\n                        <i class=\"fa fa-twitter\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.social && header.social.github\">\n                    <a ng-href=\"{{header.social.github}}\" target=\"_blank\">\n                        <i class=\"fa fa-github\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.social && header.social.pinterest\">\n                    <a ng-href=\"{{header.social.pinterest}}\" target=\"_blank\">\n                        <i class=\"fa fa-pinterest\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.social && header.social.linkedIn\">\n                    <a ng-href=\"{{header.social.linkedIn}}\" target=\"_blank\">\n                        <i class=\"fa fa-linkedin\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.accounts\">\n                    <a href=\"/login\">\n                        Login\n                    </a>\n                </li>\n                <li ng-if=\"header.accounts\">\n                    <a href=\"/register\">\n                        Register\n                    </a>\n                </li>\n            </ul>\n        </nav>\n    </div>\n</header>";
+	module.exports = "Articles";
 
 /***/ }
 
 });
-//# sourceMappingURL=marketing.bundle.js.map
+//# sourceMappingURL=producer.bundle.js.map

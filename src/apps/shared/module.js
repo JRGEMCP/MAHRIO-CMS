@@ -52,9 +52,15 @@ angular.module('mahrio.shared', [])
       template: require('./session/login.html')
     }
   }])
-  .directive('register', [ function(){
+  .directive('register', [ '$rootScope', function( $rootScope ){
     return {
       restrict: 'E',
+      controller: function($scope){
+        $scope.register = function(){
+          $rootScope.setAuthorization( true );
+          window.location.href = '/publisher/';
+        }
+      },
       template: require('./session/register.html')
     }
   }])
@@ -71,6 +77,12 @@ angular.module('mahrio.shared', [])
 
       },
       template: require('./contact/contact.html')
+    }
+  }])
+  .directive('asideMenu', [function(){
+    return {
+      restrict: 'E',
+      template: require('./aside-menu/aside-menu.html')
     }
   }])
   .directive('fourZeroFour', [ function(){

@@ -1,0 +1,21 @@
+<p-navigation></p-navigation>
+
+<div class="container-fluid">
+    <div class="row">
+        <aside-menu>
+        </aside-menu>
+
+        <div class="main padding-top-57">
+            <div class="container-fluid">
+                <div ng-if="!vm.view">
+                    <p-dash></p-dash>
+                </div>
+
+                <ng-switch on="vm.view">
+                    <p-articles ng-switch-when="articles"></p-articles>
+                    <four-zero-four app="P" ng-switch-when="404"></four-zero-four>
+                </ng-switch>
+            </div>
+        </div>
+    </div>
+</div>
