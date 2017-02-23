@@ -34,5 +34,8 @@
     "postinstall": "npm run build-prod"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "angular-sanitize": "^1.6.2"
+  }
 }

@@ -1,34 +1,33 @@
 'use strict';
 
-angular.module('mahrio.marketing', [ 'ngRoute'])
+angular.module('mahrio.marketing', [ 'ngRoute','ngSanitize'])
   .config(['$routeProvider', function($routeProvider) {
 
     $routeProvider
       .when('/', {
-        templateUrl: '/marketing.html',
+        template: require('./template.html'),
         controller: 'MarketingCtrl',
         controllerAs: 'vm'
       })
       .when('/:route', {
-        templateUrl: '/marketing.html',
+        template: require('./template.html'),
         controller: 'MarketingCtrl',
         controllerAs: 'vm'
       });
   }])
 
-  .run(['$rootScope', '$http', function($rootScope, $http){
-    $rootScope.setAuthorization = function( token ) {
-      window.localStorage.Authorization = token;
-    };
-  }])
-
-  .controller('MarketingCtrl', [ '$routeParams', function( $routeParams ) {
+  .controller('MarketingCtrl', [ '$routeParams', '$rootScope', function( $routeParams, $rootScope ) {
     this.view = $routeParams.route;
     if( typeof this.view === 'undefined'){
       return;
     }
+    console.log( this.view);
     switch( this.view) {
       // LIST OF SUPPORTED PATHS
+      case 'logout':
+        $rootScope.logout();
+        $rootScope.$broadcast('event:logout');
+        return;
       case 'articles':
       case 'login':
       case 'register':
@@ -41,16 +40,21 @@ angular.module('mahrio.marketing', [ 'ngRoute'])
         break;
     }
   }])
-  .directive('home', [ '$rootScope', function( $rootScope ){
+  .directive('home', [ '$http', function( $http ){
     return {
       restrict: 'E',
       scope: {},
       controller: function( $scope ){
-
+        $http.get('/api/pages/home')
+          .then(function(res){
+            $scope.page = res.data;
+          })
+          .catch(function(){
+            $scope.page = "<four-zero-four></four-zero-four>";
+          })
       },
       template: require('./pages/home.html'),
-      replace: true,
-      transclude: true
+      replace: true
     }
   }])
   .directive('articles', [ '$rootScope', function( $rootScope ){
@@ -67,7 +71,7 @@ angular.module('mahrio.marketing', [ 'ngRoute'])
   .controller('NewsletterCtrl', [function(){
     this.test = 1;
   }])
-  .directive('navigation', [ '$window', '$uibModal', function($window, $uibModal){
+  .directive('navigation', [ '$window', '$uibModal', '$rootScope', function($window, $uibModal, $rootScope){
     return {
       restrict: 'E',
       scope: {},
@@ -84,7 +88,14 @@ angular.module('mahrio.marketing', [ 'ngRoute'])
             keyboard: false,
             bindToController: true
           });
-        }
+        };
+        $scope.account = function(){
+          window.location.href = $rootScope.role == 'sudo' ? '/publisher/' : '/user/';
+        };
+        $scope.isLoggedIn = $rootScope.isLoggedIn;
+        $scope.$on('event:logout', function(){
+          $scope.isLoggedIn = false;
+        })
       },
       template: require('./components/marketing-navigation.html'),
       replace: true

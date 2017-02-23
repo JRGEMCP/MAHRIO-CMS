@@ -18,8 +18,9 @@ angular.module('mahrio.consumer', ['ngRoute'])
 
   .run( ['$rootScope', '$http', function( $rootScope, $http ) {
     $rootScope.getAuthorization = function( ) {
-      var token = window.localStorage.Authorization;
-      if( !token ) {
+      var token = window.localStorage.Authorization
+        , access = window.localStorage.Access;
+      if( !token || access.indexOf('authorized') === -1  ) {
         return window.location.href = '/';
       } else {
         $http.defaults.headers.common.Authorization = token;
@@ -31,6 +32,9 @@ angular.module('mahrio.consumer', ['ngRoute'])
         //   .catch( function(err){
         //     console.log(err);
         //   });
+        if( access.indexOf('sudo') !== -1 ) {
+          $rootScope.isPublisher = true;
+        }
       }
     };
     $rootScope.getAuthorization();
@@ -42,10 +46,6 @@ angular.module('mahrio.consumer', ['ngRoute'])
     }
     switch( this.view) {
       // LIST OF SUPPORTED PATHS
-      case 'logout':
-        delete window.localStorage.Authorization;
-        window.location.href = '/';
-        return;
       case 'articles':
       case 'login':
       case 'register':
@@ -57,14 +57,17 @@ angular.module('mahrio.consumer', ['ngRoute'])
         break;
     }
   }])
-  .directive('cNavigation', [ function(){
+  .directive('cNavigation', [ '$rootScope', function( $rootScope ){
     return {
       restrict: 'E',
       template: require('./components/consumer-navigation.html'),
-      replace: true
+      replace: true,
+      controller: function( $scope ){
+        $scope.isPublisher = $rootScope.isPublisher;
+      }
     }
   }])
-  .directive('cDash', [ function(){
+  .directive('cDash', [function(){
     return {
       restrict: 'E',
       template: require('./pages/dashboard.html')

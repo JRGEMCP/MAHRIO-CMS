@@ -1,6 +1,20 @@
 'use strict';
 
 angular.module('mahrio.shared', [])
+  .run(['$rootScope', '$location', '$http', function($rootScope, $location, $http){
+    $rootScope.login = function( res ) {
+      window.localStorage.Authorization = res.headers('Authorization');
+      $http.defaults.headers.common.Authorization = res.headers('Authorization');
+
+      window.localStorage.Access = res.data.access;
+
+      if( res.data.access.indexOf('sudo') !== -1 ) {
+        window.location.href = '/publisher/';
+      } else {
+        window.location.href = '/user/';
+      }
+    };
+  }])
   .directive('modal', [function(){
     return {
       restrict: 'E',
@@ -35,41 +49,6 @@ angular.module('mahrio.shared', [])
       }
     };
   }])
-  .directive('login', [ '$rootScope', '$location', function( $rootScope, $location ){
-    return {
-      restrict: 'E',
-      controller: function( $scope ){
-        $scope.session = {
-          email: '',
-          password: ''
-        };
-
-        $scope.login = function(){
-          $rootScope.setAuthorization( true );
-          window.location.href = '/user/';
-        }
-      },
-      template: require('./session/login.html')
-    }
-  }])
-  .directive('register', [ '$rootScope', function( $rootScope ){
-    return {
-      restrict: 'E',
-      controller: function($scope){
-        $scope.register = function(){
-          $rootScope.setAuthorization( true );
-          window.location.href = '/publisher/';
-        }
-      },
-      template: require('./session/register.html')
-    }
-  }])
-  .directive('resetPassword', [function(){
-    return {
-      restrict: 'E',
-      template: require('./session/reset-password.html')
-    }
-  }])
   .directive('contact', [function(){
     return {
       restrict: 'E',
@@ -79,10 +58,12 @@ angular.module('mahrio.shared', [])
       template: require('./contact/contact.html')
     }
   }])
-  .directive('asideMenu', [function(){
+  .directive('viewMiddleCentered',[function(){
     return {
       restrict: 'E',
-      template: require('./aside-menu/aside-menu.html')
+      template: require('./layouts/view-middle-centered.html'),
+      transclude: true,
+      replace: true
     }
   }])
   .directive('fourZeroFour', [ function(){
@@ -93,8 +74,30 @@ angular.module('mahrio.shared', [])
       },
       template: require('./404/404.html')
     }
+  }])
+  .directive('bindHtmlCompile', ['$compile', function ($compile) {
+    return {
+      restrict: 'A',
+      link: function (scope, element, attrs) {
+        scope.$watch(function () {
+          return scope.$eval(attrs.bindHtmlCompile);
+        }, function (value) {
+          // In case value is a TrustedValueHolderType, sometimes it
+          // needs to be explicitly called into a string in order to
+          // get the HTML string.
+          element.html(value && value.toString());
+          // If scope is provided use it, otherwise use parent scope
+          var compileScope = scope;
+          if (attrs.bindHtmlScope) {
+            compileScope = scope.$eval(attrs.bindHtmlScope);
+          }
+          $compile(element.contents())(compileScope);
+        });
+      }
+    };
   }]);
 
 require('./hero-slider/directive');
+require('./session/directives');
 
 module.exports = 'mahrio.shared';

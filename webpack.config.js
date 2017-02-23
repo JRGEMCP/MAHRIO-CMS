@@ -14,7 +14,7 @@ var config = {
     marketing: './src/apps/marketing.js',
     consumer: './src/apps/consumer.js',
     producer: './src/apps/producer.js',
-    vendorJs: ["angular", "angular-route", "angular-ui-bootstrap","jquery"],
+    vendorJs: ["angular", "angular-route", "angular-ui-bootstrap","angular-sanitize","jquery","lodash"],
     vendorCss: './src/styles/vendor.style.less'
   },
 

@@ -2,8 +2,8 @@
 
 <div class="container-fluid">
     <div class="row">
-        <aside-menu>
-        </aside-menu>
+        <p-aside-menu>
+        </p-aside-menu>
 
         <div class="main padding-top-57">
             <div class="container-fluid">
@@ -12,7 +12,10 @@
                 </div>
 
                 <ng-switch on="vm.view">
+                    <p-article-new ng-switch-when="article-new"></p-article-new>
                     <p-articles ng-switch-when="articles"></p-articles>
+                    <p-menu ng-switch-when="menu"></p-menu>
+                    <p-pages ng-switch-when="pages"></p-pages>
                     <four-zero-four app="P" ng-switch-when="404"></four-zero-four>
                 </ng-switch>
             </div>

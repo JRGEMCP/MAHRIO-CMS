@@ -43,14 +43,24 @@
                         <i class="fa fa-linkedin"></i>
                     </a>
                 </li>
-                <li ng-if="header.accounts">
+                <li ng-if="header.accounts && !isLoggedIn">
                     <a href="/login">
                         Login
                     </a>
                 </li>
-                <li ng-if="header.accounts">
+                <li ng-if="header.accounts && !isLoggedIn">
                     <a href="/register">
                         Register
+                    </a>
+                </li>
+                <li ng-if="isLoggedIn">
+                    <a href="javascript:void(0)" ng-click="account()">
+                        Account
+                    </a>
+                </li>
+                <li ng-if="isLoggedIn">
+                    <a href="/logout">
+                        Logout
                     </a>
                 </li>
             </ul>

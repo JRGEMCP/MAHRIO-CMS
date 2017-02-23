@@ -18,8 +18,9 @@ angular.module('mahrio.producer', ['ngRoute'])
 
   .run( ['$rootScope', '$http', function( $rootScope, $http ) {
     $rootScope.getAuthorization = function( ) {
-      var token = window.localStorage.Authorization;
-      if( !token ) {
+      var token = window.localStorage.Authorization
+        , access = window.localStorage.Access;
+      if( !token || access.indexOf('sudo') === -1  ) {
         return window.location.href = '/';
       } else {
         $http.defaults.headers.common.Authorization = token;
@@ -42,11 +43,10 @@ angular.module('mahrio.producer', ['ngRoute'])
     }
     switch( this.view) {
       // LIST OF SUPPORTED PATHS
-      case 'logout':
-        delete window.localStorage.Authorization;
-        window.location.href = '/';
-        return;
+      case 'article-new':
       case 'articles':
+      case 'menu':
+      case 'pages':
         break;
       default:
         if( typeof this.view !== 'undefined' ){
@@ -62,6 +62,12 @@ angular.module('mahrio.producer', ['ngRoute'])
       replace: true
     }
   }])
+  .directive('pAsideMenu', [function(){
+    return {
+      restrict: 'E',
+      template: require('./components/producer-aside-menu.html')
+    }
+  }])
   .directive('pDash', [ function(){
     return {
       restrict: 'E',
@@ -72,6 +78,24 @@ angular.module('mahrio.producer', ['ngRoute'])
     return {
       restrict: 'E',
       template: require('./pages/articles.html')
+    }
+  }])
+  .directive('pArticleNew', [ function(){
+    return {
+      restrict: 'E',
+      template: require('./pages/article-new.html')
+    }
+  }])
+  .directive('pMenu', [ function(){
+    return {
+      restrict: 'E',
+      template: require('./pages/menu.html')
+    }
+  }])
+  .directive('pPages', [ function(){
+    return {
+      restrict: 'E',
+      template: require('./pages/pages.html')
     }
   }]);
 module.exports = 'mahrio.producer';
