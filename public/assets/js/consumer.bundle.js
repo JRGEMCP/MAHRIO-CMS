@@ -124,7 +124,7 @@ webpackJsonp([0,5],{
 	
 	__webpack_require__(93);
 	__webpack_require__(94);
-	
+	__webpack_require__(151);
 	module.exports = 'mahrio.shared';
 
 /***/ },
@@ -419,6 +419,9 @@ webpackJsonp([0,5],{
 	        controller: 'ConsumerCtrl',
 	        controllerAs: 'vm'
 	      })
+	      .when('/article/:link', {
+	        template: '<article-show></article-show>'
+	      })
 	      .when('/:route', {
 	        template: __webpack_require__(99),
 	        controller: 'ConsumerCtrl',
@@ -482,12 +485,6 @@ webpackJsonp([0,5],{
 	      restrict: 'E',
 	      template: __webpack_require__(101)
 	    }
-	  }])
-	  .directive('cArticles', [ function(){
-	    return {
-	      restrict: 'E',
-	      template: __webpack_require__(102)
-	    }
 	  }]);
 	module.exports = 'mahrio.consumer';
 
@@ -496,7 +493,7 @@ webpackJsonp([0,5],{
 /***/ 99:
 /***/ function(module, exports) {
 
-	module.exports = "<c-navigation></c-navigation>\n\n<div class=\"container-fluid\">\n    <div class=\"row\">\n        <div class=\"col-xs-12\">\n            <div ng-if=\"!vm.view\">\n                <c-dash></c-dash>\n            </div>\n\n            <ng-switch on=\"vm.view\">\n                <c-articles ng-switch-when=\"articles\"></c-articles>\n                <four-zero-four app=\"C\" ng-switch-when=\"404\"></four-zero-four>\n            </ng-switch>\n        </div>\n    </div>\n</div>\n";
+	module.exports = "<div class=\"container-fluid\">\n    <div class=\"row\">\n        <div class=\"col-xs-12\">\n            <div ng-if=\"!vm.view\">\n                <c-dash></c-dash>\n            </div>\n\n            <ng-switch on=\"vm.view\">\n                <article-list ng-switch-when=\"articles\"></article-list>\n                <four-zero-four app=\"C\" ng-switch-when=\"404\"></four-zero-four>\n            </ng-switch>\n        </div>\n    </div>\n</div>\n";
 
 /***/ },
 
@@ -514,10 +511,49 @@ webpackJsonp([0,5],{
 
 /***/ },
 
-/***/ 102:
+/***/ 151:
+/***/ function(module, exports, __webpack_require__) {
+
+	angular.module('mahrio.shared')
+	  .directive('articleShow',[ '$routeParams', '$http', function($routeParams, $http){
+	    return {
+	      restrict: 'E',
+	      template: __webpack_require__(152),
+	      controller: function($scope){
+	        $http.get('/article/'+$routeParams.link + '?body=true')
+	          .then( function(res){
+	            $scope.article = res.data;
+	          })
+	      }
+	    };
+	  }])
+	  .directive('articleList',[ '$routeParams', '$http', function($routeParams, $http){
+	    return {
+	      restrict: 'E',
+	      template: __webpack_require__(153),
+	      controller: function($scope){
+	        $http.get('/api/articles')
+	          .then( function(res){
+	            $scope.articles = res.data.articles;
+	          })
+	
+	      }
+	    };
+	  }]);
+
+/***/ },
+
+/***/ 152:
 /***/ function(module, exports) {
 
-	module.exports = "<h1>C - Articles</h1>";
+	module.exports = "<div style=\"padding-top: 60px\">\n    <div bind-html-compile=\"article\">\n\n    </div>\n</div>\n";
+
+/***/ },
+
+/***/ 153:
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"container\">\n    <div class=\"row\" ng-repeat=\"article in articles\">\n        <div class=\"col-md-12\">\n            <a href=\"/user/article/{{article.link}}\">\n                {{article.title}}\n            </a>\n        </div>\n    </div>\n</div>";
 
 /***/ }
 

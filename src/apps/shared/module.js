@@ -99,5 +99,5 @@ angular.module('mahrio.shared', [])
 
 require('./hero-slider/directive');
 require('./session/directives');
-
+require('./content/article');
 module.exports = 'mahrio.shared';

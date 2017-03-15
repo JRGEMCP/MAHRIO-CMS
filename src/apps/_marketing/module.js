@@ -10,9 +10,7 @@ angular.module('mahrio.marketing', [ 'ngRoute','ngSanitize'])
         controllerAs: 'vm'
       })
       .when('/article/:link', {
-        template: require('./components/content/article-show.html'),
-        controller: 'ArticleCtrl',
-        controllerAs: 'vm'
+        template: '<article-show></article-show>'
       })
       .when('/:route', {
         template: require('./template.html'),
@@ -121,7 +119,5 @@ angular.module('mahrio.marketing', [ 'ngRoute','ngSanitize'])
       }
     });
   }]);
-
-require('./components/content/article');
 
 module.exports = 'mahrio.marketing';

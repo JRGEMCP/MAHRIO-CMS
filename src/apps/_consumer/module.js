@@ -9,6 +9,9 @@ angular.module('mahrio.consumer', ['ngRoute'])
         controller: 'ConsumerCtrl',
         controllerAs: 'vm'
       })
+      .when('/article/:link', {
+        template: '<article-show></article-show>'
+      })
       .when('/:route', {
         template: require('./template.html'),
         controller: 'ConsumerCtrl',
@@ -71,12 +74,6 @@ angular.module('mahrio.consumer', ['ngRoute'])
     return {
       restrict: 'E',
       template: require('./pages/dashboard.html')
-    }
-  }])
-  .directive('cArticles', [ function(){
-    return {
-      restrict: 'E',
-      template: require('./pages/articles.html')
     }
   }]);
 module.exports = 'mahrio.consumer';

@@ -141,7 +141,7 @@ webpackJsonp([1,5],{
 	
 	__webpack_require__(93);
 	__webpack_require__(94);
-	
+	__webpack_require__(151);
 	module.exports = 'mahrio.shared';
 
 /***/ },
@@ -437,9 +437,7 @@ webpackJsonp([1,5],{
 	        controllerAs: 'vm'
 	      })
 	      .when('/article/:link', {
-	        template: __webpack_require__(149),
-	        controller: 'ArticleCtrl',
-	        controllerAs: 'vm'
+	        template: '<article-show></article-show>'
 	      })
 	      .when('/:route', {
 	        template: __webpack_require__(104),
@@ -549,8 +547,6 @@ webpackJsonp([1,5],{
 	    });
 	  }]);
 	
-	__webpack_require__(150);
-	
 	module.exports = 'mahrio.marketing';
 
 /***/ },
@@ -590,24 +586,49 @@ webpackJsonp([1,5],{
 
 /***/ },
 
-/***/ 149:
-/***/ function(module, exports) {
+/***/ 151:
+/***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "<div style=\"padding-top: 60px\">\n    <div bind-html-compile=\"vm.article\">\n\n    </div>\n</div>\n";
+	angular.module('mahrio.shared')
+	  .directive('articleShow',[ '$routeParams', '$http', function($routeParams, $http){
+	    return {
+	      restrict: 'E',
+	      template: __webpack_require__(152),
+	      controller: function($scope){
+	        $http.get('/article/'+$routeParams.link + '?body=true')
+	          .then( function(res){
+	            $scope.article = res.data;
+	          })
+	      }
+	    };
+	  }])
+	  .directive('articleList',[ '$routeParams', '$http', function($routeParams, $http){
+	    return {
+	      restrict: 'E',
+	      template: __webpack_require__(153),
+	      controller: function($scope){
+	        $http.get('/api/articles')
+	          .then( function(res){
+	            $scope.articles = res.data.articles;
+	          })
+	
+	      }
+	    };
+	  }]);
 
 /***/ },
 
-/***/ 150:
+/***/ 152:
 /***/ function(module, exports) {
 
-	angular.module('mahrio.marketing')
-	  .controller('ArticleCtrl',[ '$routeParams', '$http', function($routeParams, $http){
-	    var that = this;
-	    $http.get('/article/'+$routeParams.link + '?body=true')
-	      .then( function(res){
-	        that.article = res.data;
-	      })
-	  }]);
+	module.exports = "<div style=\"padding-top: 60px\">\n    <div bind-html-compile=\"article\">\n\n    </div>\n</div>\n";
+
+/***/ },
+
+/***/ 153:
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"container\">\n    <div class=\"row\" ng-repeat=\"article in articles\">\n        <div class=\"col-md-12\">\n            <a href=\"/user/article/{{article.link}}\">\n                {{article.title}}\n            </a>\n        </div>\n    </div>\n</div>";
 
 /***/ }
 
