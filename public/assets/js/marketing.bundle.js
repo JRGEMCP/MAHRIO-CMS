@@ -436,13 +436,17 @@ webpackJsonp([1,5],{
 	        controller: 'MarketingCtrl',
 	        controllerAs: 'vm'
 	      })
+	      .when('/article/:link', {
+	        template: __webpack_require__(149),
+	        controller: 'ArticleCtrl',
+	        controllerAs: 'vm'
+	      })
 	      .when('/:route', {
 	        template: __webpack_require__(104),
 	        controller: 'MarketingCtrl',
 	        controllerAs: 'vm'
 	      });
 	  }])
-	
 	  .controller('MarketingCtrl', [ '$routeParams', '$rootScope', function( $routeParams, $rootScope ) {
 	    this.view = $routeParams.route;
 	    if( typeof this.view === 'undefined'){
@@ -545,6 +549,8 @@ webpackJsonp([1,5],{
 	    });
 	  }]);
 	
+	__webpack_require__(150);
+	
 	module.exports = 'mahrio.marketing';
 
 /***/ },
@@ -581,6 +587,27 @@ webpackJsonp([1,5],{
 /***/ function(module, exports) {
 
 	module.exports = "<header class=\"navbar navbar-inverse navbar-fixed-top\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <a class=\"navbar-brand\" href=\"/\">\n                {{header.brand}}\n            </a>\n        </div>\n        <nav>\n            <ul class=\"nav navbar-nav\">\n                <li class=\"nav-item\" ng-repeat=\"link in header.links\">\n                    <a class=\"nav-link\" href=\"{{link.href}}\">\n                        {{link.text}}\n                    </a>\n                </li>\n                <li ng-if=\"header.newsletter\">\n                    <a ng-click=\"newsletter()\" href=\"javascript:void(0)\">\n                        Newsletter\n                    </a>\n                </li>\n\n                <li ng-if=\"header.social && header.social.fb\">\n                    <a ng-href=\"{{header.social.fb}}\" target=\"_blank\">\n                       <i class=\"fa fa-facebook-f\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.social && header.social.twitter\">\n                    <a ng-href=\"{{header.social.twitter}}\" target=\"_blank\">\n                        <i class=\"fa fa-twitter\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.social && header.social.github\">\n                    <a ng-href=\"{{header.social.github}}\" target=\"_blank\">\n                        <i class=\"fa fa-github\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.social && header.social.pinterest\">\n                    <a ng-href=\"{{header.social.pinterest}}\" target=\"_blank\">\n                        <i class=\"fa fa-pinterest\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.social && header.social.linkedIn\">\n                    <a ng-href=\"{{header.social.linkedIn}}\" target=\"_blank\">\n                        <i class=\"fa fa-linkedin\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.accounts && !isLoggedIn\">\n                    <a href=\"/login\">\n                        Login\n                    </a>\n                </li>\n                <li ng-if=\"header.accounts && !isLoggedIn\">\n                    <a href=\"/register\">\n                        Register\n                    </a>\n                </li>\n                <li ng-if=\"isLoggedIn\">\n                    <a href=\"javascript:void(0)\" ng-click=\"account()\">\n                        Account\n                    </a>\n                </li>\n                <li ng-if=\"isLoggedIn\">\n                    <a href=\"/logout\">\n                        Logout\n                    </a>\n                </li>\n            </ul>\n        </nav>\n    </div>\n</header>";
+
+/***/ },
+
+/***/ 149:
+/***/ function(module, exports) {
+
+	module.exports = "<div style=\"padding-top: 60px\">\n    <div bind-html-compile=\"vm.article\">\n\n    </div>\n</div>\n";
+
+/***/ },
+
+/***/ 150:
+/***/ function(module, exports) {
+
+	angular.module('mahrio.marketing')
+	  .controller('ArticleCtrl',[ '$routeParams', '$http', function($routeParams, $http){
+	    var that = this;
+	    $http.get('/article/'+$routeParams.link + '?body=true')
+	      .then( function(res){
+	        that.article = res.data;
+	      })
+	  }]);
 
 /***/ }
 

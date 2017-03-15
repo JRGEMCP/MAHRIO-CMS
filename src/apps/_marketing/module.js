@@ -9,13 +9,17 @@ angular.module('mahrio.marketing', [ 'ngRoute','ngSanitize'])
         controller: 'MarketingCtrl',
         controllerAs: 'vm'
       })
+      .when('/article/:link', {
+        template: require('./components/content/article-show.html'),
+        controller: 'ArticleCtrl',
+        controllerAs: 'vm'
+      })
       .when('/:route', {
         template: require('./template.html'),
         controller: 'MarketingCtrl',
         controllerAs: 'vm'
       });
   }])
-
   .controller('MarketingCtrl', [ '$routeParams', '$rootScope', function( $routeParams, $rootScope ) {
     this.view = $routeParams.route;
     if( typeof this.view === 'undefined'){
@@ -117,5 +121,7 @@ angular.module('mahrio.marketing', [ 'ngRoute','ngSanitize'])
       }
     });
   }]);
+
+require('./components/content/article');
 
 module.exports = 'mahrio.marketing';

@@ -3,7 +3,11 @@
     <%- include includes/head.ejs %>
 <body>
     <div id="seo-content">
-        <%- include transclude/content %>
+        <% if( typeof page !== 'undefined' && page ) { %>
+            <%- include transclude/content %>
+        <% } else if( typeof article !== 'undefined' && article){ %>
+            <%- include transclude/article %>
+        <% } %>
     </div>
 
     <navigation></navigation>
