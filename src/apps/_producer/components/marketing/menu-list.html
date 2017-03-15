@@ -1,0 +1,23 @@
+<h1>
+    <button class="pull-right btn btn-primary" ng-show="!selected" ng-click="select(-1);">New Menu</button>
+    Menus
+</h1>
+<edit-menu menu="selected" ng-show="selected"></edit-menu>
+<div class="row" ng-repeat="menu in menus" ng-show="!selected">
+    <div class="col-md-3">
+        {{::menu.key}}
+    </div>
+    <div class="col-md-3">
+        {{::menu.created | date : 'medium'}}
+    </div>
+    <div class="col-md-3">
+        <button class="btn btn-default btn-block" ng-click="select($index)">
+            Edit
+        </button>
+    </div>
+    <div class="col-md-3">
+        <button class="btn btn-danger btn-block" ng-click="removeMenu(menu._id, $index);">
+            Remove
+        </button>
+    </div>
+</div>

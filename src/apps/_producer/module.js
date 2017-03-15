@@ -86,16 +86,13 @@ angular.module('mahrio.producer', ['ngRoute'])
       template: require('./pages/article-new.html')
     }
   }])
-  .directive('pMenu', [ function(){
-    return {
-      restrict: 'E',
-      template: require('./pages/menu.html')
-    }
-  }])
   .directive('pPages', [ function(){
     return {
       restrict: 'E',
       template: require('./pages/pages.html')
     }
   }]);
+
+require('./components/marketing/menu');
+
 module.exports = 'mahrio.producer';

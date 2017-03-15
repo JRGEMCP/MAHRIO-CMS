@@ -8,7 +8,7 @@ webpackJsonp([0,5],{
 	angular.module('mahrio', [
 	  'ngRoute',
 	  __webpack_require__(87),
-	  __webpack_require__(99)
+	  __webpack_require__(98)
 	]).
 	config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
 	
@@ -86,7 +86,7 @@ webpackJsonp([0,5],{
 	  .directive('viewMiddleCentered',[function(){
 	    return {
 	      restrict: 'E',
-	      template: __webpack_require__(92),
+	      template: __webpack_require__(91),
 	      transclude: true,
 	      replace: true
 	    }
@@ -97,7 +97,7 @@ webpackJsonp([0,5],{
 	      link: function (scope, element, attrs){
 	        scope.app = attrs['app'];
 	      },
-	      template: __webpack_require__(93)
+	      template: __webpack_require__(92)
 	    }
 	  }])
 	  .directive('bindHtmlCompile', ['$compile', function ($compile) {
@@ -122,8 +122,8 @@ webpackJsonp([0,5],{
 	    };
 	  }]);
 	
+	__webpack_require__(93);
 	__webpack_require__(94);
-	__webpack_require__(95);
 	
 	module.exports = 'mahrio.shared';
 
@@ -150,21 +150,21 @@ webpackJsonp([0,5],{
 
 /***/ },
 
-/***/ 92:
+/***/ 91:
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"container content-table\">\n    <div class=\"container-body content-table-cell\">\n        <div class=\"row\">\n            <div class=\"col-md-4 col-md-offset-4\">\n                <ng-transclude></ng-transclude>\n            </div>\n        </div>\n    </div>\n</div>";
 
 /***/ },
 
-/***/ 93:
+/***/ 92:
 /***/ function(module, exports) {
 
 	module.exports = "<view-middle-centered>\n    <h1>{{app}}: 404</h1>\n</view-middle-centered>\n";
 
 /***/ },
 
-/***/ 94:
+/***/ 93:
 /***/ function(module, exports) {
 
 	angular.module('mahrio.shared')
@@ -313,7 +313,7 @@ webpackJsonp([0,5],{
 
 /***/ },
 
-/***/ 95:
+/***/ 94:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -341,7 +341,7 @@ webpackJsonp([0,5],{
 	            });
 	        }
 	      },
-	      template: __webpack_require__(96)
+	      template: __webpack_require__(95)
 	    }
 	  }])
 	  .directive('register', [ '$rootScope', '$location', '$http', function( $rootScope, $location, $http ){
@@ -361,13 +361,13 @@ webpackJsonp([0,5],{
 	            });
 	        }
 	      },
-	      template: __webpack_require__(97)
+	      template: __webpack_require__(96)
 	    }
 	  }])
 	  .directive('recoverPassword', ['$http', function( $http ){
 	    return {
 	      restrict: 'E',
-	      template: __webpack_require__(98),
+	      template: __webpack_require__(97),
 	      controller: function($scope){
 	        $scope.session = {
 	          email: ''
@@ -384,28 +384,28 @@ webpackJsonp([0,5],{
 
 /***/ },
 
-/***/ 96:
+/***/ 95:
 /***/ function(module, exports) {
 
 	module.exports = "<view-middle-centered>\n    <form novalidate ng-submit=\"login()\">\n        <h2>Login</h2>\n\n        <form-input-tag in=\"session.email\" type=\"email\" label=\"Email\"></form-input-tag>\n\n        <form-input-tag in=\"session.password\" type=\"password\" label=\"Password\"></form-input-tag>\n\n        <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\">\n            Login\n        </button>\n        <br/>\n        <div class=\"text-center\">\n            <a href=\"/reset-password\">\n                Reset Password\n            </a>\n        </div>\n    </form>\n</view-middle-centered>";
 
 /***/ },
 
-/***/ 97:
+/***/ 96:
 /***/ function(module, exports) {
 
 	module.exports = "<view-middle-centered>\n    <form novalidate ng-submit=\"register()\">\n        <h2>Registers</h2>\n\n        <form-input-tag in=\"user.fName\" label=\"First Name\"></form-input-tag>\n\n        <form-input-tag in=\"user.lName\" label=\"Last Name\"></form-input-tag>\n\n        <form-input-tag in=\"user.email\" type=\"email\" label=\"Email\"></form-input-tag>\n\n        <form-input-tag in=\"user.password\" type=\"password\" label=\"Password\"></form-input-tag>\n\n        <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\">\n            Register\n        </button>\n        <br/>\n        <div class=\"text-center\">\n            <a href=\"/login\">\n                Have an Account?\n            </a>\n        </div>\n    </form>\n</view-middle-centered>";
 
 /***/ },
 
-/***/ 98:
+/***/ 97:
 /***/ function(module, exports) {
 
 	module.exports = "<view-middle-centered>\n    <form novalidate ng-submit=\"recoverPassword()\">\n        <h2>Reset Password</h2>\n\n        <form-input-tag in=\"session.email\" type=\"email\" label=\"Email\"></form-input-tag>\n\n        <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\">\n            Recover Password\n        </button>\n    </form>\n</view-middle-centered>";
 
 /***/ },
 
-/***/ 99:
+/***/ 98:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -415,12 +415,12 @@ webpackJsonp([0,5],{
 	
 	    $routeProvider
 	      .when('/', {
-	        template: __webpack_require__(100),
+	        template: __webpack_require__(99),
 	        controller: 'ConsumerCtrl',
 	        controllerAs: 'vm'
 	      })
 	      .when('/:route', {
-	        template: __webpack_require__(100),
+	        template: __webpack_require__(99),
 	        controller: 'ConsumerCtrl',
 	        controllerAs: 'vm'
 	      });
@@ -470,7 +470,7 @@ webpackJsonp([0,5],{
 	  .directive('cNavigation', [ '$rootScope', function( $rootScope ){
 	    return {
 	      restrict: 'E',
-	      template: __webpack_require__(101),
+	      template: __webpack_require__(100),
 	      replace: true,
 	      controller: function( $scope ){
 	        $scope.isPublisher = $rootScope.isPublisher;
@@ -480,41 +480,41 @@ webpackJsonp([0,5],{
 	  .directive('cDash', [function(){
 	    return {
 	      restrict: 'E',
-	      template: __webpack_require__(102)
+	      template: __webpack_require__(101)
 	    }
 	  }])
 	  .directive('cArticles', [ function(){
 	    return {
 	      restrict: 'E',
-	      template: __webpack_require__(103)
+	      template: __webpack_require__(102)
 	    }
 	  }]);
 	module.exports = 'mahrio.consumer';
 
 /***/ },
 
-/***/ 100:
+/***/ 99:
 /***/ function(module, exports) {
 
 	module.exports = "<c-navigation></c-navigation>\n\n<div class=\"container-fluid\">\n    <div class=\"row\">\n        <div class=\"col-xs-12\">\n            <div ng-if=\"!vm.view\">\n                <c-dash></c-dash>\n            </div>\n\n            <ng-switch on=\"vm.view\">\n                <c-articles ng-switch-when=\"articles\"></c-articles>\n                <four-zero-four app=\"C\" ng-switch-when=\"404\"></four-zero-four>\n            </ng-switch>\n        </div>\n    </div>\n</div>\n";
 
 /***/ },
 
-/***/ 101:
+/***/ 100:
 /***/ function(module, exports) {
 
 	module.exports = "<nav class=\"navbar navbar-light no-radius bg-white container\">\n    <a class=\"navbar-brand\" href=\"/\">\n        Home\n    </a>\n    <div class=\"bg-white navbar-toggleable-md\" id=\"navbar-header\">\n        <ul class=\"nav navbar-nav\">\n            <li class=\"nav-item\">\n                <a class=\"nav-link\" href=\"/user/\">\n                    Dashboard\n                </a>\n            </li>\n            <li class=\"nav-item\">\n                <a class=\"nav-link\" href=\"/user/articles\">\n                    Articles\n                </a>\n            </li>\n            <li class=\"nav-item\">\n                <a class=\"nav-link\" href=\"/publisher/\" ng-if=\"isPublisher\">\n                    Publisher\n                </a>\n            </li>\n            <li class=\"nav-item\">\n                <a class=\"nav-link\" href=\"/logout\">\n                    Logout\n                </a>\n            </li>\n        </ul>\n    </div>\n</nav>";
 
 /***/ },
 
-/***/ 102:
+/***/ 101:
 /***/ function(module, exports) {
 
 	module.exports = "<h1>C - Dashboard</h1>";
 
 /***/ },
 
-/***/ 103:
+/***/ 102:
 /***/ function(module, exports) {
 
 	module.exports = "<h1>C - Articles</h1>";

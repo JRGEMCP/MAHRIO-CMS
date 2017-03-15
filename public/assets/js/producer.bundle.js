@@ -9,7 +9,7 @@ webpackJsonp([2,5],{
 	  'ngRoute',
 	  'ui.bootstrap',
 	  __webpack_require__(87),
-	  __webpack_require__(110)
+	  __webpack_require__(109)
 	]).
 	config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
 	
@@ -87,7 +87,7 @@ webpackJsonp([2,5],{
 	  .directive('viewMiddleCentered',[function(){
 	    return {
 	      restrict: 'E',
-	      template: __webpack_require__(92),
+	      template: __webpack_require__(91),
 	      transclude: true,
 	      replace: true
 	    }
@@ -98,7 +98,7 @@ webpackJsonp([2,5],{
 	      link: function (scope, element, attrs){
 	        scope.app = attrs['app'];
 	      },
-	      template: __webpack_require__(93)
+	      template: __webpack_require__(92)
 	    }
 	  }])
 	  .directive('bindHtmlCompile', ['$compile', function ($compile) {
@@ -123,8 +123,8 @@ webpackJsonp([2,5],{
 	    };
 	  }]);
 	
+	__webpack_require__(93);
 	__webpack_require__(94);
-	__webpack_require__(95);
 	
 	module.exports = 'mahrio.shared';
 
@@ -151,21 +151,21 @@ webpackJsonp([2,5],{
 
 /***/ },
 
-/***/ 92:
+/***/ 91:
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"container content-table\">\n    <div class=\"container-body content-table-cell\">\n        <div class=\"row\">\n            <div class=\"col-md-4 col-md-offset-4\">\n                <ng-transclude></ng-transclude>\n            </div>\n        </div>\n    </div>\n</div>";
 
 /***/ },
 
-/***/ 93:
+/***/ 92:
 /***/ function(module, exports) {
 
 	module.exports = "<view-middle-centered>\n    <h1>{{app}}: 404</h1>\n</view-middle-centered>\n";
 
 /***/ },
 
-/***/ 94:
+/***/ 93:
 /***/ function(module, exports) {
 
 	angular.module('mahrio.shared')
@@ -314,7 +314,7 @@ webpackJsonp([2,5],{
 
 /***/ },
 
-/***/ 95:
+/***/ 94:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -342,7 +342,7 @@ webpackJsonp([2,5],{
 	            });
 	        }
 	      },
-	      template: __webpack_require__(96)
+	      template: __webpack_require__(95)
 	    }
 	  }])
 	  .directive('register', [ '$rootScope', '$location', '$http', function( $rootScope, $location, $http ){
@@ -362,13 +362,13 @@ webpackJsonp([2,5],{
 	            });
 	        }
 	      },
-	      template: __webpack_require__(97)
+	      template: __webpack_require__(96)
 	    }
 	  }])
 	  .directive('recoverPassword', ['$http', function( $http ){
 	    return {
 	      restrict: 'E',
-	      template: __webpack_require__(98),
+	      template: __webpack_require__(97),
 	      controller: function($scope){
 	        $scope.session = {
 	          email: ''
@@ -385,28 +385,28 @@ webpackJsonp([2,5],{
 
 /***/ },
 
-/***/ 96:
+/***/ 95:
 /***/ function(module, exports) {
 
 	module.exports = "<view-middle-centered>\n    <form novalidate ng-submit=\"login()\">\n        <h2>Login</h2>\n\n        <form-input-tag in=\"session.email\" type=\"email\" label=\"Email\"></form-input-tag>\n\n        <form-input-tag in=\"session.password\" type=\"password\" label=\"Password\"></form-input-tag>\n\n        <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\">\n            Login\n        </button>\n        <br/>\n        <div class=\"text-center\">\n            <a href=\"/reset-password\">\n                Reset Password\n            </a>\n        </div>\n    </form>\n</view-middle-centered>";
 
 /***/ },
 
-/***/ 97:
+/***/ 96:
 /***/ function(module, exports) {
 
 	module.exports = "<view-middle-centered>\n    <form novalidate ng-submit=\"register()\">\n        <h2>Registers</h2>\n\n        <form-input-tag in=\"user.fName\" label=\"First Name\"></form-input-tag>\n\n        <form-input-tag in=\"user.lName\" label=\"Last Name\"></form-input-tag>\n\n        <form-input-tag in=\"user.email\" type=\"email\" label=\"Email\"></form-input-tag>\n\n        <form-input-tag in=\"user.password\" type=\"password\" label=\"Password\"></form-input-tag>\n\n        <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\">\n            Register\n        </button>\n        <br/>\n        <div class=\"text-center\">\n            <a href=\"/login\">\n                Have an Account?\n            </a>\n        </div>\n    </form>\n</view-middle-centered>";
 
 /***/ },
 
-/***/ 98:
+/***/ 97:
 /***/ function(module, exports) {
 
 	module.exports = "<view-middle-centered>\n    <form novalidate ng-submit=\"recoverPassword()\">\n        <h2>Reset Password</h2>\n\n        <form-input-tag in=\"session.email\" type=\"email\" label=\"Email\"></form-input-tag>\n\n        <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\">\n            Recover Password\n        </button>\n    </form>\n</view-middle-centered>";
 
 /***/ },
 
-/***/ 110:
+/***/ 109:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -416,12 +416,12 @@ webpackJsonp([2,5],{
 	
 	    $routeProvider
 	      .when('/', {
-	        template: __webpack_require__(111),
+	        template: __webpack_require__(110),
 	        controller: 'ProducerCtrl',
 	        controllerAs: 'vm'
 	      })
 	      .when('/:route', {
-	        template: __webpack_require__(111),
+	        template: __webpack_require__(110),
 	        controller: 'ProducerCtrl',
 	        controllerAs: 'vm'
 	      });
@@ -469,14 +469,14 @@ webpackJsonp([2,5],{
 	  .directive('pNavigation', [ function(){
 	    return {
 	      restrict: 'E',
-	      template: __webpack_require__(112),
+	      template: __webpack_require__(111),
 	      replace: true
 	    }
 	  }])
 	  .directive('pAsideMenu', [function(){
 	    return {
 	      restrict: 'E',
-	      template: __webpack_require__(140)
+	      template: __webpack_require__(112)
 	    }
 	  }])
 	  .directive('pDash', [ function(){
@@ -494,36 +494,40 @@ webpackJsonp([2,5],{
 	  .directive('pArticleNew', [ function(){
 	    return {
 	      restrict: 'E',
-	      template: __webpack_require__(143)
-	    }
-	  }])
-	  .directive('pMenu', [ function(){
-	    return {
-	      restrict: 'E',
-	      template: __webpack_require__(141)
+	      template: __webpack_require__(115)
 	    }
 	  }])
 	  .directive('pPages', [ function(){
 	    return {
 	      restrict: 'E',
-	      template: __webpack_require__(142)
+	      template: __webpack_require__(117)
 	    }
 	  }]);
+	
+	__webpack_require__(144);
+	
 	module.exports = 'mahrio.producer';
 
 /***/ },
 
-/***/ 111:
+/***/ 110:
 /***/ function(module, exports) {
 
 	module.exports = "<p-navigation></p-navigation>\n\n<div class=\"container-fluid\">\n    <div class=\"row\">\n        <p-aside-menu>\n        </p-aside-menu>\n\n        <div class=\"main padding-top-57\">\n            <div class=\"container-fluid\">\n                <div ng-if=\"!vm.view\">\n                    <p-dash></p-dash>\n                </div>\n\n                <ng-switch on=\"vm.view\">\n                    <p-article-new ng-switch-when=\"article-new\"></p-article-new>\n                    <p-articles ng-switch-when=\"articles\"></p-articles>\n                    <p-menu ng-switch-when=\"menu\"></p-menu>\n                    <p-pages ng-switch-when=\"pages\"></p-pages>\n                    <four-zero-four app=\"P\" ng-switch-when=\"404\"></four-zero-four>\n                </ng-switch>\n            </div>\n        </div>\n    </div>\n</div>\n";
 
 /***/ },
 
-/***/ 112:
+/***/ 111:
 /***/ function(module, exports) {
 
 	module.exports = "<nav class=\" bg-whitesmoke navbar navbar-light navbar-fixed-top no-radius\">\n    <a class=\"navbar-brand\" href=\"/publisher/\">\n        Publisher\n    </a>\n    <div class=\"main\">\n        <form class=\"navbar-form navbar-left\">\n            <div class=\"form-group\">\n                <input type=\"text\" class=\"form-control\" placeholder=\"Search\">\n            </div>\n            <button type=\"submit\" class=\"btn btn-default\">Submit</button>\n        </form>\n\n        <div class=\"navbar-toggleable-md pull-right\" id=\"navbar-header\">\n            <ul class=\"nav navbar-nav\">\n                <li class=\"nav-item\">\n                    <a class=\"nav-link\" href=\"/\">\n                        Marketing\n                    </a>\n                </li>\n                <li class=\"nav-item\">\n                    <a class=\"nav-link\" href=\"/user/\">\n                        Consumer\n                    </a>\n                </li>\n                <li class=\"nav-item\">\n                    <a class=\"nav-link\" href=\"/logout\">\n                        Logout\n                    </a>\n                </li>\n            </ul>\n        </div>\n    </div>\n\n</nav>";
+
+/***/ },
+
+/***/ 112:
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"aside-menu\">\n    <uib-accordion close-others=\"true\">\n        <div class=\"panel-default panel\">\n            <div class=\"panel-heading\">\n                <h4 class=\"panel-title\">\n                    <a href=\"/publisher/\">DASHBOARD</a>\n                </h4>\n            </div>\n        </div>\n        <div uib-accordion-group class=\"panel-default\">\n            <div uib-accordion-heading>\n                ARTICLES\n            </div>\n            <ul>\n                <li>\n                    <a href=\"/publisher/article-new\">Create Article</a>\n                </li>\n                <li>\n                    <a href=\"/publisher/articles\">List Articles</a>\n                </li>\n            </ul>\n        </div>\n        <div uib-accordion-group class=\"panel-default\">\n            <div uib-accordion-heading>\n                MARKETING\n            </div>\n            <ul>\n                <li>\n                    <a href=\"/publisher/menu\">Menus</a>\n                </li>\n                <li>\n                    <a href=\"/publisher/pages\">Pages</a>\n                </li>\n            </ul>\n        </div>\n    </uib-accordion>\n</div>";
 
 /***/ },
 
@@ -541,31 +545,155 @@ webpackJsonp([2,5],{
 
 /***/ },
 
-/***/ 140:
+/***/ 115:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"aside-menu\">\n    <uib-accordion close-others=\"true\">\n        <div class=\"panel-default panel\">\n            <div class=\"panel-heading\">\n                <h4 class=\"panel-title\">\n                    <a href=\"/publisher/\">DASHBOARD</a>\n                </h4>\n            </div>\n        </div>\n        <div uib-accordion-group class=\"panel-default\">\n            <div uib-accordion-heading>\n                ARTICLES\n            </div>\n            <ul>\n                <li>\n                    <a href=\"/publisher/article-new\">Create Article</a>\n                </li>\n                <li>\n                    <a href=\"/publisher/articles\">List Articles</a>\n                </li>\n            </ul>\n        </div>\n        <div uib-accordion-group class=\"panel-default\">\n            <div uib-accordion-heading>\n                MARKETING\n            </div>\n            <ul>\n                <li>\n                    <a href=\"/publisher/menu\">Main Menu</a>\n                </li>\n                <li>\n                    <a href=\"/publisher/pages\">List Pages</a>\n                </li>\n            </ul>\n        </div>\n    </uib-accordion>\n</div>";
+	module.exports = "<h1>Create Article</h1>";
 
 /***/ },
 
-/***/ 141:
-/***/ function(module, exports) {
-
-	module.exports = "<h1>Menu</h1>";
-
-/***/ },
-
-/***/ 142:
+/***/ 117:
 /***/ function(module, exports) {
 
 	module.exports = "<h1>Pages</h1>";
 
 /***/ },
 
-/***/ 143:
+/***/ 144:
+/***/ function(module, exports, __webpack_require__) {
+
+	angular.module('mahrio.producer')
+	  .directive('pMenu', [ function(){
+	    return {
+	      restrict: 'E',
+	      template: __webpack_require__(147),
+	      controller: function($scope, $http){
+	        $scope.removeMenu = function( id, index ) {
+	          $http.delete('/api/pages/menu/'+id)
+	            .then( function(){
+	              $scope.menus.splice( index, 1);
+	            });
+	        };
+	        $scope.select = function(i){
+	          if( i >= 0 ) {
+	            $scope.selected = $scope.menus[i];
+	          } else {
+	            $scope.selected = 'new';
+	          }
+	        };
+	        $scope.$on('event:done', function(e, res){
+	          $scope.selected = null;
+	          console.log('done', e, res);
+	        });
+	        $http.get('/api/pages/menus')
+	          .then( function(res) {
+	            $scope.menus = res.data.menus;
+	          });
+	      }
+	    }
+	  }])
+	  .directive('editMenu',['$http', function($http){
+	    return {
+	      restrict: 'E',
+	      template: __webpack_require__(148),
+	      scope: {
+	        menu: '='
+	      },
+	      link: function( scope ){
+	        scope.$watch( function(){ return scope.menu; }, function(nw, ol){
+	          if( nw ) {
+	            if( nw._id ) {
+	              scope.navigation = nw.content;
+	              scope.key = nw.key;
+	              scope.tempKey = nw.key;
+	              scope.id = nw._id;
+	              scope.fb = scope.navigation.social.fb ? true : false;
+	              scope.twtr = scope.navigation.social.twitter ? true : false;
+	              scope.git = scope.navigation.social.github ? true : false;
+	              scope.mail = scope.navigation.mail ? true : false;
+	            } else if( nw == 'new') {
+	              var currentIndex = null;
+	              scope.key = '';
+	              scope.tempKey = '';
+	              scope.navigation = {
+	                brand: '',
+	                links: [],
+	                topics: [],
+	                newsletter: false,
+	                search: false,
+	                phone: null,
+	                mail: null,
+	                address: null,
+	                accounts: false,
+	                social: {
+	                  fb: '',
+	                  linkedIn: '',
+	                  pinterest: '',
+	                  twitter: '',
+	                  github: ''
+	                }
+	              };
+	            }
+	
+	          }
+	        });
+	        scope.addKey = function(){
+	          scope.key = scope.tempKey;
+	        };
+	        scope.addItem = function(){
+	          if( !scope.navigation.topics || !scope.navigation.topics.length ) {
+	            scope.navigation.topics = [{}];
+	          } else {
+	            scope.navigation.topics.push( {} );
+	          }
+	        };
+	        scope.removeItem = function( i ){
+	          scope.navigation.topics.splice( i, 1 );
+	        };
+	        scope.addLink = function(){
+	          if( !scope.navigation.links || !scope.navigation.links.length ) {
+	            scope.navigation.links = [ {} ];
+	          } else {
+	            scope.navigation.links.push( {} );
+	
+	          }
+	        };
+	        scope.removeLink = function( i ){
+	          scope.navigation.links.splice( i, 1);
+	        };
+	        scope.isIndexOf = function( i ) {
+	          return i === currentIndex;
+	        };
+	        scope.cancel = function(){ scope.$emit('event:done'); };
+	        scope.save = function(){
+	          $http.post('/api/pages/menu', {menu: {content: scope.navigation, key: scope.key}})
+	            .then( function(res){
+	              scope.$emit('event:done', res);
+	            });
+	        };
+	        scope.update = function(){
+	          $http.put('/api/pages/menu/'+scope.id, {menu: {content: scope.navigation, key: scope.key}})
+	            .then( function(res){
+	              scope.$emit('event:done', res);
+	            });
+	        }
+	      }
+	    }
+	  }]);
+
+/***/ },
+
+/***/ 147:
 /***/ function(module, exports) {
 
-	module.exports = "<h1>Create Article</h1>";
+	module.exports = "<h1>\n    <button class=\"pull-right btn btn-primary\" ng-show=\"!selected\" ng-click=\"select(-1);\">New Menu</button>\n    Menus\n</h1>\n<edit-menu menu=\"selected\" ng-show=\"selected\"></edit-menu>\n<div class=\"row\" ng-repeat=\"menu in menus\" ng-show=\"!selected\">\n    <div class=\"col-md-3\">\n        {{::menu.key}}\n    </div>\n    <div class=\"col-md-3\">\n        {{::menu.created | date : 'medium'}}\n    </div>\n    <div class=\"col-md-3\">\n        <button class=\"btn btn-default btn-block\" ng-click=\"select($index)\">\n            Edit\n        </button>\n    </div>\n    <div class=\"col-md-3\">\n        <button class=\"btn btn-danger btn-block\" ng-click=\"removeMenu(menu._id, $index);\">\n            Remove\n        </button>\n    </div>\n</div>";
+
+/***/ },
+
+/***/ 148:
+/***/ function(module, exports) {
+
+	module.exports = "<div>\n    <div class=\"row form-group\">\n        <div class=\"col-md-6\">\n            <label>Menu Key</label>\n            <input class=\"form-control\" placeholder=\"main, primary, secondary\" ng-model=\"tempKey\" ng-disabled=\"key\"/>\n        </div>\n        <div class=\"col-md-6\" ng-show=\"!id &amp;&amp; !key\">\n            <label>&nbsp;</label>\n            <btn class=\"btn btn-primary btn-block\" ng-click=\"addKey()\">Create Menu</btn>\n        </div>\n        <div class=\"col-md-6\" ng-show=\"key\">\n            <label>Brand</label>\n            <input class=\"form-control\" placeholder=\"Company Name\" ng-model=\"navigation.brand\"/>\n        </div>\n        <div class=\"col-md-12\" ng-show=\"key\">\n            <div class=\"row\">\n                <div class=\"col-md-6\">\n                    <label>Logo</label>\n                    <input class=\"form-control\" placeholder=\"Logo Url (shown on home page only)\" ng-model=\"navigation.logo\"/>\n                </div>\n                <div class=\"col-md-6\">\n                    <label>Logo Style</label>\n                    <input class=\"form-control\" placeholder=\"width: ?px; margin-top: ?px\" ng-model=\"navigation.logoStyle\"/>\n                </div>\n            </div>\n        </div>\n    </div>\n    <hr ng-show=\"key\"/>\n    <div class=\"row\" ng-show=\"key\">\n        <div class=\"col-md-12\">\n            <label>Links</label>\n            <button class=\"btn btn-primary btn-xs\" ng-click=\"addLink()\"><i class=\"fa fa-plus\"></i></button>\n            <ul class=\"list-group\" style=\"margin: 0;\">\n                <li class=\"list-group-item\" ng-repeat=\"item in navigation.links track by $index\" style=\"padding-left: 50px;\"><i class=\"fa fa-close\" style=\"position:absolute; right: 5px;top:2px; color:#000;z-index:999;font-size:37pt;\" ng-click=\"removeLink( $index ); $event.stopPropagation();\"></i><span style=\"position:absolute; left: 10px; line-height: 34px; font-size: 30px;\">{{$index+1}}</span>\n                    <div class=\"row\">\n                        <div class=\"col-md-3 col-md-offset-4\">\n                            <input class=\"form-control\" type=\"text\" placeholder=\"Text\" ng-model=\"item.text\"/>\n                        </div>\n                        <div class=\"col-md-2 col-md-offset-1\" style=\"padding-right:0;\">\n                            <input class=\"form-control\" type=\"text\" placeholder=\"href/mailto\" ng-model=\"item.href\"/>\n                        </div>\n                    </div>\n                </li>\n            </ul>\n        </div>\n        <div class=\"col-md-6\">\n            <label>Links Style</label>\n            <input class=\"form-control\" placeholder=\"width: ?px; margin-top: ?px\" ng-model=\"navigation.linksStyle\"/>\n        </div>\n    </div>\n    <hr ng-show=\"key\"/>\n    <div class=\"row\" ng-show=\"key\">\n        <div class=\"col-md-12\">\n            <label>Topics&nbsp;</label>\n            <button class=\"btn btn-primary btn-xs\" ng-click=\"addItem()\"><i class=\"fa fa-plus\"></i></button>\n            <ul class=\"list-group\" style=\"margin: 0;\">\n                <li class=\"list-group-item\" ng-repeat=\"item in navigation.topics track by $index\" style=\"padding-left: 50px;\"><i class=\"fa fa-close\" style=\"position:absolute; right: 5px;top:2px; color:#000;z-index:999;font-size:37pt;\" ng-click=\"removeItem( $index ); $event.stopPropagation();\"></i><span style=\"position:absolute; left: 10px; line-height: 34px; font-size: 30px;\">{{$index+1}}</span>\n                    <div class=\"row\">\n                        <div class=\"col-md-2\" style=\"padding-right:0;\">\n                            <input class=\"form-control\" type=\"text\" placeholder=\"fa-* (icon)\" ng-model=\"item.icon\"/>\n                        </div>\n                        <div class=\"col-md-2\" style=\"padding-right:0;\">\n                            <input class=\"form-control\" type=\"text\" placeholder=\"img_url\" ng-model=\"item.img\"/>\n                        </div>\n                        <div class=\"col-md-3\">\n                            <input class=\"form-control\" type=\"text\" placeholder=\"Text\" ng-model=\"item.text\"/>\n                        </div>\n                        <div class=\"col-md-1\" style=\"padding:0;\">\n                            <input class=\"form-control\" type=\"text\" placeholder=\"id\" ng-model=\"item.id\"/>\n                        </div>\n                        <div class=\"col-md-2\" style=\"padding-right:0;\">\n                            <input class=\"form-control\" type=\"text\" placeholder=\"href/mailto\" ng-model=\"item.href\"/>\n                        </div>\n                        <div class=\"col-md-2\">\n                            <input class=\"form-control\" type=\"text\" placeholder=\"_blank\" ng-model=\"item.target\"/>\n                        </div>\n                    </div>\n                </li>\n            </ul>\n        </div>\n    </div>\n    <hr ng-show=\"key\"/>\n    <div class=\"row\" ng-show=\"key\">\n        <div class=\"col-md-3\">\n            <div class=\"row\">\n                <div class=\"col-md-6\">\n                    <label>Newsletter</label>\n                </div>\n                <div class=\"col-md-3\">\n                    <input type=\"checkbox\" i-check=\"i-check\" ng-model=\"navigation.newsletter\"/>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"col-md-6\">\n                    <label>Search</label>\n                </div>\n                <div class=\"col-md-3\">\n                    <input type=\"checkbox\" i-check=\"i-check\" ng-model=\"navigation.search\"/>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"col-md-6\">\n                    <label>Accounts</label>\n                </div>\n                <div class=\"col-md-3\">\n                    <input type=\"checkbox\" i-check=\"i-check\" ng-model=\"navigation.accounts\"/>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-md-3\">\n            <div class=\"row\">\n                <div class=\"col-md-6\">\n                    <label>Phone</label>\n                </div>\n                <div class=\"col-md-3\">\n                    <input class=\"form-control\" type=\"checkbox\" i-check=\"i-check\" ng-model=\"phone\"/>\n                </div>\n                <div class=\"col-md-12\">\n                    <input class=\"form-control\" placeholder=\"tel:+15307177110\" ng-show=\"phone\" ng-model=\"navigation.phone\"/>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-md-3\">\n            <div class=\"row\">\n                <div class=\"col-md-6\">\n                    <label>Address</label>\n                </div>\n                <div class=\"col-md-3\">\n                    <input type=\"checkbox\" i-check=\"i-check\" ng-model=\"address\"/>\n                </div>\n                <div class=\"col-md-12\">\n                    <input class=\"form-control\" type=\"text\" placeholder=\"google.com/maps/place\" ng-show=\"address\" ng-model=\"navigation.address\"/>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-md-3\">\n            <div class=\"row\">\n                <div class=\"col-md-6\">\n                    <label>Mail</label>\n                </div>\n                <div class=\"col-md-3\">\n                    <input type=\"checkbox\" i-check=\"i-check\" ng-model=\"mail\"/>\n                </div>\n                <div class=\"col-md-12\">\n                    <input class=\"form-control\" type=\"text\" ng-show=\"mail\" placeholder=\"mailto:xxx@xx.xx\" ng-model=\"navigation.mail\"/>\n                </div>\n            </div>\n        </div>\n    </div>\n    <div class=\"row\" ng-show=\"key\">\n        <div class=\"col-md-3 col-md-offset-\">\n            <div class=\"row\">\n                <div class=\"col-md-6\">\n                    <label>Facebook</label>\n                </div>\n                <div class=\"col-md-3\">\n                    <input type=\"checkbox\" i-check=\"i-check\" ng-model=\"fb\"/>\n                </div>\n                <div class=\"col-md-12\">\n                    <input class=\"form-control\" type=\"text\" ng-show=\"fb\" placeholder=\"facebook url\" ng-model=\"navigation.social.fb\"/>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-md-3\">\n            <div class=\"row\">\n                <div class=\"col-md-6\">\n                    <label>Twitter</label>\n                </div>\n                <div class=\"col-md-3\">\n                    <input type=\"checkbox\" i-check=\"i-check\" ng-model=\"twtr\"/>\n                </div>\n                <div class=\"col-md-12\">\n                    <input class=\"form-control\" type=\"text\" ng-show=\"twtr\" placeholder=\"twitter url\" ng-model=\"navigation.social.twitter\"/>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-md-3\">\n            <div class=\"row\">\n                <div class=\"col-md-6\">\n                    <label>Github</label>\n                </div>\n                <div class=\"col-md-3\">\n                    <input type=\"checkbox\" i-check=\"i-check\" ng-model=\"git\"/>\n                </div>\n                <div class=\"col-md-12\">\n                    <input class=\"form-control\" type=\"text\" ng-show=\"git\" placeholder=\"github url\" ng-model=\"navigation.social.github\"/>\n                </div>\n            </div>\n        </div>\n    </div>\n    <hr ng-show=\"!directive && key\"/>\n    <div class=\"row\" ng-show=\"!directive && key \">\n        <div class=\"col-md-6 col-md-offset-3\">\n            <button class=\"btn btn-default\" ng-click=\"cancel()\">Cancel</button>\n            <button class=\"btn btn-primary\" ng-click=\"save()\" ng-show=\"!id\">Save</button>\n            <button class=\"btn btn-primary\" ng-click=\"update()\" ng-show=\"id\">Update</button>\n        </div>\n    </div>\n</div>";
 
 /***/ }
 

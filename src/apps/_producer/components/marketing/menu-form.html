@@ -1,0 +1,199 @@
+<div>
+    <div class="row form-group">
+        <div class="col-md-6">
+            <label>Menu Key</label>
+            <input class="form-control" placeholder="main, primary, secondary" ng-model="tempKey" ng-disabled="key"/>
+        </div>
+        <div class="col-md-6" ng-show="!id &amp;&amp; !key">
+            <label>&nbsp;</label>
+            <btn class="btn btn-primary btn-block" ng-click="addKey()">Create Menu</btn>
+        </div>
+        <div class="col-md-6" ng-show="key">
+            <label>Brand</label>
+            <input class="form-control" placeholder="Company Name" ng-model="navigation.brand"/>
+        </div>
+        <div class="col-md-12" ng-show="key">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Logo</label>
+                    <input class="form-control" placeholder="Logo Url (shown on home page only)" ng-model="navigation.logo"/>
+                </div>
+                <div class="col-md-6">
+                    <label>Logo Style</label>
+                    <input class="form-control" placeholder="width: ?px; margin-top: ?px" ng-model="navigation.logoStyle"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr ng-show="key"/>
+    <div class="row" ng-show="key">
+        <div class="col-md-12">
+            <label>Links</label>
+            <button class="btn btn-primary btn-xs" ng-click="addLink()"><i class="fa fa-plus"></i></button>
+            <ul class="list-group" style="margin: 0;">
+                <li class="list-group-item" ng-repeat="item in navigation.links track by $index" style="padding-left: 50px;"><i class="fa fa-close" style="position:absolute; right: 5px;top:2px; color:#000;z-index:999;font-size:37pt;" ng-click="removeLink( $index ); $event.stopPropagation();"></i><span style="position:absolute; left: 10px; line-height: 34px; font-size: 30px;">{{$index+1}}</span>
+                    <div class="row">
+                        <div class="col-md-3 col-md-offset-4">
+                            <input class="form-control" type="text" placeholder="Text" ng-model="item.text"/>
+                        </div>
+                        <div class="col-md-2 col-md-offset-1" style="padding-right:0;">
+                            <input class="form-control" type="text" placeholder="href/mailto" ng-model="item.href"/>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <label>Links Style</label>
+            <input class="form-control" placeholder="width: ?px; margin-top: ?px" ng-model="navigation.linksStyle"/>
+        </div>
+    </div>
+    <hr ng-show="key"/>
+    <div class="row" ng-show="key">
+        <div class="col-md-12">
+            <label>Topics&nbsp;</label>
+            <button class="btn btn-primary btn-xs" ng-click="addItem()"><i class="fa fa-plus"></i></button>
+            <ul class="list-group" style="margin: 0;">
+                <li class="list-group-item" ng-repeat="item in navigation.topics track by $index" style="padding-left: 50px;"><i class="fa fa-close" style="position:absolute; right: 5px;top:2px; color:#000;z-index:999;font-size:37pt;" ng-click="removeItem( $index ); $event.stopPropagation();"></i><span style="position:absolute; left: 10px; line-height: 34px; font-size: 30px;">{{$index+1}}</span>
+                    <div class="row">
+                        <div class="col-md-2" style="padding-right:0;">
+                            <input class="form-control" type="text" placeholder="fa-* (icon)" ng-model="item.icon"/>
+                        </div>
+                        <div class="col-md-2" style="padding-right:0;">
+                            <input class="form-control" type="text" placeholder="img_url" ng-model="item.img"/>
+                        </div>
+                        <div class="col-md-3">
+                            <input class="form-control" type="text" placeholder="Text" ng-model="item.text"/>
+                        </div>
+                        <div class="col-md-1" style="padding:0;">
+                            <input class="form-control" type="text" placeholder="id" ng-model="item.id"/>
+                        </div>
+                        <div class="col-md-2" style="padding-right:0;">
+                            <input class="form-control" type="text" placeholder="href/mailto" ng-model="item.href"/>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" placeholder="_blank" ng-model="item.target"/>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <hr ng-show="key"/>
+    <div class="row" ng-show="key">
+        <div class="col-md-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Newsletter</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="checkbox" i-check="i-check" ng-model="navigation.newsletter"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Search</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="checkbox" i-check="i-check" ng-model="navigation.search"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Accounts</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="checkbox" i-check="i-check" ng-model="navigation.accounts"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Phone</label>
+                </div>
+                <div class="col-md-3">
+                    <input class="form-control" type="checkbox" i-check="i-check" ng-model="phone"/>
+                </div>
+                <div class="col-md-12">
+                    <input class="form-control" placeholder="tel:+15307177110" ng-show="phone" ng-model="navigation.phone"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Address</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="checkbox" i-check="i-check" ng-model="address"/>
+                </div>
+                <div class="col-md-12">
+                    <input class="form-control" type="text" placeholder="google.com/maps/place" ng-show="address" ng-model="navigation.address"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Mail</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="checkbox" i-check="i-check" ng-model="mail"/>
+                </div>
+                <div class="col-md-12">
+                    <input class="form-control" type="text" ng-show="mail" placeholder="mailto:xxx@xx.xx" ng-model="navigation.mail"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="key">
+        <div class="col-md-3 col-md-offset-">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Facebook</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="checkbox" i-check="i-check" ng-model="fb"/>
+                </div>
+                <div class="col-md-12">
+                    <input class="form-control" type="text" ng-show="fb" placeholder="facebook url" ng-model="navigation.social.fb"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Twitter</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="checkbox" i-check="i-check" ng-model="twtr"/>
+                </div>
+                <div class="col-md-12">
+                    <input class="form-control" type="text" ng-show="twtr" placeholder="twitter url" ng-model="navigation.social.twitter"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Github</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="checkbox" i-check="i-check" ng-model="git"/>
+                </div>
+                <div class="col-md-12">
+                    <input class="form-control" type="text" ng-show="git" placeholder="github url" ng-model="navigation.social.github"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr ng-show="!directive && key"/>
+    <div class="row" ng-show="!directive && key ">
+        <div class="col-md-6 col-md-offset-3">
+            <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+            <button class="btn btn-primary" ng-click="save()" ng-show="!id">Save</button>
+            <button class="btn btn-primary" ng-click="update()" ng-show="id">Update</button>
+        </div>
+    </div>
+</div>
