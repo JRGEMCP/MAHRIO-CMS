@@ -1,3 +1,26 @@
+h1 {
+    font-size: 40pt !important;
+}
+#marketing header.navbar.navbar-default {
+    height: 70px;
+}
+#marketing header.navbar ul.navbar-nav.nav li {
+    position: inherit;
+}
+#marketing header.navbar ul.navbar-nav.nav li .dropdown {
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background: #e3e3e3;
+    padding-top: 10px;
+}
+#marketing header.navbar ul.navbar-nav.nav li.collapse .dropdown {
+    display: none;
+}
+#marketing header.navbar ul.navbar-nav.nav li.collapse:hover .dropdown {
+    display: none;
+}
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -9830,6 +9853,18 @@ section .section-divider {
   vertical-align: inherit;
   padding: 10px;
   max-width: 200px;
+}
+.navbar-brand {
+  padding: 25px 0;
+  font-size: 30px;
+  line-height: 20px;
+}
+ul.nav.navbar-nav li.nav-item {
+  margin: 10px 0;
+}
+ul.nav.navbar-nav li.nav-item a {
+  padding: 15px;
+  font-size: 20px;
 }
 
 /*# sourceMappingURL=styles.css.map*/

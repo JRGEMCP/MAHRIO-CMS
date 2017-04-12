@@ -9,7 +9,7 @@ webpackJsonp([1,5],{
 	  'ngRoute',
 	  'ui.bootstrap',
 	  __webpack_require__(87),
-	  __webpack_require__(103)
+	  __webpack_require__(105)
 	]).config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
 	
 	  $locationProvider.html5Mode(true);
@@ -141,7 +141,7 @@ webpackJsonp([1,5],{
 	
 	__webpack_require__(93);
 	__webpack_require__(94);
-	__webpack_require__(151);
+	__webpack_require__(98);
 	module.exports = 'mahrio.shared';
 
 /***/ },
@@ -422,7 +422,53 @@ webpackJsonp([1,5],{
 
 /***/ },
 
-/***/ 103:
+/***/ 98:
+/***/ function(module, exports, __webpack_require__) {
+
+	angular.module('mahrio.shared')
+	  .directive('articleShow',[ '$routeParams', '$http', function($routeParams, $http){
+	    return {
+	      restrict: 'E',
+	      template: __webpack_require__(99),
+	      controller: function($scope){
+	        $http.get('/article/'+$routeParams.link + '?body=true')
+	          .then( function(res){
+	            $scope.article = res.data;
+	          })
+	      }
+	    };
+	  }])
+	  .directive('articleList',[ '$routeParams', '$http', function($routeParams, $http){
+	    return {
+	      restrict: 'E',
+	      template: __webpack_require__(100),
+	      controller: function($scope){
+	        $http.get('/api/articles')
+	          .then( function(res){
+	            $scope.articles = res.data.articles;
+	          })
+	
+	      }
+	    };
+	  }]);
+
+/***/ },
+
+/***/ 99:
+/***/ function(module, exports) {
+
+	module.exports = "<div style=\"padding-top: 60px\">\n    <div bind-html-compile=\"article\">\n\n    </div>\n</div>\n";
+
+/***/ },
+
+/***/ 100:
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"container\">\n    <div class=\"row\" ng-repeat=\"article in articles\">\n        <div class=\"col-md-12\">\n            <a href=\"/user/article/{{article.link}}\">\n                {{article.title}}\n            </a>\n        </div>\n    </div>\n</div>";
+
+/***/ },
+
+/***/ 105:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -432,7 +478,7 @@ webpackJsonp([1,5],{
 	
 	    $routeProvider
 	      .when('/', {
-	        template: __webpack_require__(104),
+	        template: __webpack_require__(106),
 	        controller: 'MarketingCtrl',
 	        controllerAs: 'vm'
 	      })
@@ -440,7 +486,7 @@ webpackJsonp([1,5],{
 	        template: '<article-show></article-show>'
 	      })
 	      .when('/:route', {
-	        template: __webpack_require__(104),
+	        template: __webpack_require__(106),
 	        controller: 'MarketingCtrl',
 	        controllerAs: 'vm'
 	      });
@@ -482,7 +528,7 @@ webpackJsonp([1,5],{
 	            $scope.page = "<four-zero-four></four-zero-four>";
 	          })
 	      },
-	      template: __webpack_require__(105),
+	      template: __webpack_require__(107),
 	      replace: true
 	    }
 	  }])
@@ -493,7 +539,7 @@ webpackJsonp([1,5],{
 	      controller: function( $scope ){
 	
 	      },
-	      template: __webpack_require__(106),
+	      template: __webpack_require__(108),
 	      replace: true
 	    }
 	  }])
@@ -510,7 +556,7 @@ webpackJsonp([1,5],{
 	        }
 	        $scope.newsletter = function(){
 	          var modalInstance = $uibModal.open({
-	            template: __webpack_require__(107),
+	            template: __webpack_require__(109),
 	            controller: 'NewsletterCtrl',
 	            controllerAs: 'vm',
 	            backdrop: 'static',
@@ -526,7 +572,7 @@ webpackJsonp([1,5],{
 	          $scope.isLoggedIn = false;
 	        })
 	      },
-	      template: __webpack_require__(108),
+	      template: __webpack_require__(110),
 	      replace: true
 	    }
 	  }])
@@ -551,84 +597,38 @@ webpackJsonp([1,5],{
 
 /***/ },
 
-/***/ 104:
-/***/ function(module, exports) {
-
-	module.exports = "<div class=\"container-fluid\">\n    <div class=\"row\">\n        <div ng-if=\"!vm.view\">\n            <home></home>\n        </div>\n\n        <ng-switch on=\"vm.view\">\n            <articles ng-switch-when=\"articles\"></articles>\n            <four-zero-four app=\"M\" ng-switch-when=\"404\"></four-zero-four>\n\n            <login ng-switch-when=\"login\"></login>\n            <register ng-switch-when=\"register\"></register>\n            <recover-password ng-switch-when=\"reset-password\"></recover-password>\n        </ng-switch>\n    </div>\n</div>";
-
-/***/ },
-
-/***/ 105:
-/***/ function(module, exports) {
-
-	module.exports = "<div bind-html-compile=\"page\">\n\n</div>\n\n";
-
-/***/ },
-
 /***/ 106:
 /***/ function(module, exports) {
 
-	module.exports = "<h1>M: Articles</h1>";
+	module.exports = "<div class=\"container-fluid\" id=\"marketing\">\n    <div class=\"row\">\n        <div ng-if=\"!vm.view\">\n            <home></home>\n        </div>\n\n        <ng-switch on=\"vm.view\">\n            <articles ng-switch-when=\"articles\"></articles>\n            <four-zero-four app=\"M\" ng-switch-when=\"404\"></four-zero-four>\n\n            <login ng-switch-when=\"login\"></login>\n            <register ng-switch-when=\"register\"></register>\n            <recover-password ng-switch-when=\"reset-password\"></recover-password>\n        </ng-switch>\n    </div>\n</div>";
 
 /***/ },
 
 /***/ 107:
 /***/ function(module, exports) {
 
-	module.exports = "<div style=\"padding:15px;\" ng-if=\"alerts.length\">\n    <div uib-alert ng-repeat=\"alert in alerts\" ng-class=\"'alert-' + (alert.type || 'warning')\"\n         close=\"closeAlert($index)\">{{alert.msg}}\n    </div>\n</div>\n\n<modal uibmodal=\"vm.uibmodalinstance\" modal=\"modal\" title=\"Newsletter\">\n    <form-input-tag in=\"modal.email\" type=\"email\" label=\"Email\"></form-input-tag>\n</modal>\n";
+	module.exports = "<div bind-html-compile=\"page\">\n\n</div>\n\n";
 
 /***/ },
 
 /***/ 108:
 /***/ function(module, exports) {
 
-	module.exports = "<header class=\"navbar navbar-inverse navbar-fixed-top\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <a class=\"navbar-brand\" href=\"/\">\n                {{header.brand}}\n            </a>\n        </div>\n        <nav>\n            <ul class=\"nav navbar-nav\">\n                <li class=\"nav-item\" ng-repeat=\"link in header.links\">\n                    <a class=\"nav-link\" href=\"{{link.href}}\">\n                        {{link.text}}\n                    </a>\n                </li>\n                <li ng-if=\"header.newsletter\">\n                    <a ng-click=\"newsletter()\" href=\"javascript:void(0)\">\n                        Newsletter\n                    </a>\n                </li>\n\n                <li ng-if=\"header.social && header.social.fb\">\n                    <a ng-href=\"{{header.social.fb}}\" target=\"_blank\">\n                       <i class=\"fa fa-facebook-f\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.social && header.social.twitter\">\n                    <a ng-href=\"{{header.social.twitter}}\" target=\"_blank\">\n                        <i class=\"fa fa-twitter\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.social && header.social.github\">\n                    <a ng-href=\"{{header.social.github}}\" target=\"_blank\">\n                        <i class=\"fa fa-github\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.social && header.social.pinterest\">\n                    <a ng-href=\"{{header.social.pinterest}}\" target=\"_blank\">\n                        <i class=\"fa fa-pinterest\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.social && header.social.linkedIn\">\n                    <a ng-href=\"{{header.social.linkedIn}}\" target=\"_blank\">\n                        <i class=\"fa fa-linkedin\"></i>\n                    </a>\n                </li>\n                <li ng-if=\"header.accounts && !isLoggedIn\">\n                    <a href=\"/login\">\n                        Login\n                    </a>\n                </li>\n                <li ng-if=\"header.accounts && !isLoggedIn\">\n                    <a href=\"/register\">\n                        Register\n                    </a>\n                </li>\n                <li ng-if=\"isLoggedIn\">\n                    <a href=\"javascript:void(0)\" ng-click=\"account()\">\n                        Account\n                    </a>\n                </li>\n                <li ng-if=\"isLoggedIn\">\n                    <a href=\"/logout\">\n                        Logout\n                    </a>\n                </li>\n            </ul>\n        </nav>\n    </div>\n</header>";
+	module.exports = "<h1>M: Articles</h1>";
 
 /***/ },
 
-/***/ 151:
-/***/ function(module, exports, __webpack_require__) {
-
-	angular.module('mahrio.shared')
-	  .directive('articleShow',[ '$routeParams', '$http', function($routeParams, $http){
-	    return {
-	      restrict: 'E',
-	      template: __webpack_require__(152),
-	      controller: function($scope){
-	        $http.get('/article/'+$routeParams.link + '?body=true')
-	          .then( function(res){
-	            $scope.article = res.data;
-	          })
-	      }
-	    };
-	  }])
-	  .directive('articleList',[ '$routeParams', '$http', function($routeParams, $http){
-	    return {
-	      restrict: 'E',
-	      template: __webpack_require__(153),
-	      controller: function($scope){
-	        $http.get('/api/articles')
-	          .then( function(res){
-	            $scope.articles = res.data.articles;
-	          })
-	
-	      }
-	    };
-	  }]);
-
-/***/ },
-
-/***/ 152:
+/***/ 109:
 /***/ function(module, exports) {
 
-	module.exports = "<div style=\"padding-top: 60px\">\n    <div bind-html-compile=\"article\">\n\n    </div>\n</div>\n";
+	module.exports = "<div style=\"padding:15px;\" ng-if=\"alerts.length\">\n    <div uib-alert ng-repeat=\"alert in alerts\" ng-class=\"'alert-' + (alert.type || 'warning')\"\n         close=\"closeAlert($index)\">{{alert.msg}}\n    </div>\n</div>\n\n<modal uibmodal=\"vm.uibmodalinstance\" modal=\"modal\" title=\"Newsletter\">\n    <form-input-tag in=\"modal.email\" type=\"email\" label=\"Email\"></form-input-tag>\n</modal>\n";
 
 /***/ },
 
-/***/ 153:
+/***/ 110:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"container\">\n    <div class=\"row\" ng-repeat=\"article in articles\">\n        <div class=\"col-md-12\">\n            <a href=\"/user/article/{{article.link}}\">\n                {{article.title}}\n            </a>\n        </div>\n    </div>\n</div>";
+	module.exports = "<header class=\"navbar navbar-default navbar-fixed-top\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <a class=\"navbar-brand\" href=\"/\">\n                {{header.brand}}\n            </a>\n        </div>\n        <nav>\n\n            <ul class=\"nav navbar-nav\">\n                <li class=\"nav-item\" ng-class=\"{true: 'collapse'}[!collapseTopics]\" ng-if=\"header.topics && header.topics.length\"\n                    ng-mouseenter=\"collapseTopics = !collapseTopics\" ng-mouseleave=\"collapseTopics = !collapseTopics\">\n                    <a class=\"nav-link\" href=\"#\">\n                        Topics\n                    </a>\n                    <div class=\"dropdown\">\n                        <div class=\"container-fluid\">\n                            <div class=\"row\">\n                                <div class=\"col-md-3\" ng-repeat=\"topic in header.topics\">\n                                    <a ng-href=\"{{topic.href}}\">\n                                        {{topic.text}}\n                                    </a>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </li>\n                <li class=\"nav-item\" ng-repeat=\"link in header.links\">\n                    <a class=\"nav-link\" href=\"{{link.href}}\">\n                        {{link.text}}\n                    </a>\n                </li>\n                <li class=\"nav-item\" ng-if=\"header.newsletter\">\n                    <a ng-click=\"newsletter()\" href=\"javascript:void(0)\">\n                        Newsletter\n                    </a>\n                </li>\n\n                <li class=\"nav-item\" ng-if=\"header.social && header.social.fb\">\n                    <a ng-href=\"{{header.social.fb}}\" target=\"_blank\">\n                       <i class=\"fa fa-facebook-f\"></i>\n                    </a>\n                </li>\n                <li class=\"nav-item\" ng-if=\"header.social && header.social.twitter\">\n                    <a ng-href=\"{{header.social.twitter}}\" target=\"_blank\">\n                        <i class=\"fa fa-twitter\"></i>\n                    </a>\n                </li>\n                <li class=\"nav-item\" ng-if=\"header.social && header.social.github\">\n                    <a ng-href=\"{{header.social.github}}\" target=\"_blank\">\n                        <i class=\"fa fa-github\"></i>\n                    </a>\n                </li>\n                <li class=\"nav-item\" ng-if=\"header.social && header.social.pinterest\">\n                    <a ng-href=\"{{header.social.pinterest}}\" target=\"_blank\">\n                        <i class=\"fa fa-pinterest\"></i>\n                    </a>\n                </li>\n                <li class=\"nav-item\" ng-if=\"header.social && header.social.linkedIn\">\n                    <a ng-href=\"{{header.social.linkedIn}}\" target=\"_blank\">\n                        <i class=\"fa fa-linkedin\"></i>\n                    </a>\n                </li>\n                <li class=\"nav-item\" ng-if=\"header.accounts && !isLoggedIn\">\n                    <a href=\"/login\">\n                        Login\n                    </a>\n                </li>\n                <li class=\"nav-item\" ng-if=\"header.accounts && !isLoggedIn\">\n                    <a href=\"/register\">\n                        Register\n                    </a>\n                </li>\n                <li class=\"nav-item\" ng-if=\"header.accounts && isLoggedIn\">\n                    <a href=\"javascript:void(0)\" ng-click=\"account()\">\n                        Account\n                    </a>\n                </li>\n                <li class=\"nav-item\" ng-if=\"header.accounts && isLoggedIn\">\n                    <a href=\"/logout\">\n                        Logout\n                    </a>\n                </li>\n            </ul>\n\n            <ul class=\"nav navbar-nav pull-right\">\n                <form class=\"navbar-form navbar-left\" ng-if=\"header.search\" style=\"line-height: 50px\">\n                    <div class=\"form-group\">\n                        <input type=\"text\" class=\"form-control\" placeholder=\"Search\">\n                    </div>\n                    <button type=\"submit\" class=\"btn btn-default\"><i class=\"fa fa-search\"></i></button>\n                </form>\n            </ul>\n        </nav>\n    </div>\n</header>\n";
 
 /***/ }
 

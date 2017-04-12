@@ -8,7 +8,7 @@ webpackJsonp([0,5],{
 	angular.module('mahrio', [
 	  'ngRoute',
 	  __webpack_require__(87),
-	  __webpack_require__(98)
+	  __webpack_require__(101)
 	]).
 	config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
 	
@@ -124,7 +124,7 @@ webpackJsonp([0,5],{
 	
 	__webpack_require__(93);
 	__webpack_require__(94);
-	__webpack_require__(151);
+	__webpack_require__(98);
 	module.exports = 'mahrio.shared';
 
 /***/ },
@@ -408,6 +408,52 @@ webpackJsonp([0,5],{
 /***/ 98:
 /***/ function(module, exports, __webpack_require__) {
 
+	angular.module('mahrio.shared')
+	  .directive('articleShow',[ '$routeParams', '$http', function($routeParams, $http){
+	    return {
+	      restrict: 'E',
+	      template: __webpack_require__(99),
+	      controller: function($scope){
+	        $http.get('/article/'+$routeParams.link + '?body=true')
+	          .then( function(res){
+	            $scope.article = res.data;
+	          })
+	      }
+	    };
+	  }])
+	  .directive('articleList',[ '$routeParams', '$http', function($routeParams, $http){
+	    return {
+	      restrict: 'E',
+	      template: __webpack_require__(100),
+	      controller: function($scope){
+	        $http.get('/api/articles')
+	          .then( function(res){
+	            $scope.articles = res.data.articles;
+	          })
+	
+	      }
+	    };
+	  }]);
+
+/***/ },
+
+/***/ 99:
+/***/ function(module, exports) {
+
+	module.exports = "<div style=\"padding-top: 60px\">\n    <div bind-html-compile=\"article\">\n\n    </div>\n</div>\n";
+
+/***/ },
+
+/***/ 100:
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"container\">\n    <div class=\"row\" ng-repeat=\"article in articles\">\n        <div class=\"col-md-12\">\n            <a href=\"/user/article/{{article.link}}\">\n                {{article.title}}\n            </a>\n        </div>\n    </div>\n</div>";
+
+/***/ },
+
+/***/ 101:
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 	
 	angular.module('mahrio.consumer', ['ngRoute'])
@@ -415,7 +461,7 @@ webpackJsonp([0,5],{
 	
 	    $routeProvider
 	      .when('/', {
-	        template: __webpack_require__(99),
+	        template: __webpack_require__(102),
 	        controller: 'ConsumerCtrl',
 	        controllerAs: 'vm'
 	      })
@@ -423,7 +469,7 @@ webpackJsonp([0,5],{
 	        template: '<article-show></article-show>'
 	      })
 	      .when('/:route', {
-	        template: __webpack_require__(99),
+	        template: __webpack_require__(102),
 	        controller: 'ConsumerCtrl',
 	        controllerAs: 'vm'
 	      });
@@ -473,7 +519,7 @@ webpackJsonp([0,5],{
 	  .directive('cNavigation', [ '$rootScope', function( $rootScope ){
 	    return {
 	      restrict: 'E',
-	      template: __webpack_require__(100),
+	      template: __webpack_require__(103),
 	      replace: true,
 	      controller: function( $scope ){
 	        $scope.isPublisher = $rootScope.isPublisher;
@@ -483,77 +529,31 @@ webpackJsonp([0,5],{
 	  .directive('cDash', [function(){
 	    return {
 	      restrict: 'E',
-	      template: __webpack_require__(101)
+	      template: __webpack_require__(104)
 	    }
 	  }]);
 	module.exports = 'mahrio.consumer';
 
 /***/ },
 
-/***/ 99:
+/***/ 102:
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"container-fluid\">\n    <div class=\"row\">\n        <div class=\"col-xs-12\">\n            <div ng-if=\"!vm.view\">\n                <c-dash></c-dash>\n            </div>\n\n            <ng-switch on=\"vm.view\">\n                <article-list ng-switch-when=\"articles\"></article-list>\n                <four-zero-four app=\"C\" ng-switch-when=\"404\"></four-zero-four>\n            </ng-switch>\n        </div>\n    </div>\n</div>\n";
 
 /***/ },
 
-/***/ 100:
+/***/ 103:
 /***/ function(module, exports) {
 
 	module.exports = "<nav class=\"navbar navbar-light no-radius bg-white container\">\n    <a class=\"navbar-brand\" href=\"/\">\n        Home\n    </a>\n    <div class=\"bg-white navbar-toggleable-md\" id=\"navbar-header\">\n        <ul class=\"nav navbar-nav\">\n            <li class=\"nav-item\">\n                <a class=\"nav-link\" href=\"/user/\">\n                    Dashboard\n                </a>\n            </li>\n            <li class=\"nav-item\">\n                <a class=\"nav-link\" href=\"/user/articles\">\n                    Articles\n                </a>\n            </li>\n            <li class=\"nav-item\">\n                <a class=\"nav-link\" href=\"/publisher/\" ng-if=\"isPublisher\">\n                    Publisher\n                </a>\n            </li>\n            <li class=\"nav-item\">\n                <a class=\"nav-link\" href=\"/logout\">\n                    Logout\n                </a>\n            </li>\n        </ul>\n    </div>\n</nav>";
 
 /***/ },
 
-/***/ 101:
+/***/ 104:
 /***/ function(module, exports) {
 
 	module.exports = "<h1>C - Dashboard</h1>";
-
-/***/ },
-
-/***/ 151:
-/***/ function(module, exports, __webpack_require__) {
-
-	angular.module('mahrio.shared')
-	  .directive('articleShow',[ '$routeParams', '$http', function($routeParams, $http){
-	    return {
-	      restrict: 'E',
-	      template: __webpack_require__(152),
-	      controller: function($scope){
-	        $http.get('/article/'+$routeParams.link + '?body=true')
-	          .then( function(res){
-	            $scope.article = res.data;
-	          })
-	      }
-	    };
-	  }])
-	  .directive('articleList',[ '$routeParams', '$http', function($routeParams, $http){
-	    return {
-	      restrict: 'E',
-	      template: __webpack_require__(153),
-	      controller: function($scope){
-	        $http.get('/api/articles')
-	          .then( function(res){
-	            $scope.articles = res.data.articles;
-	          })
-	
-	      }
-	    };
-	  }]);
-
-/***/ },
-
-/***/ 152:
-/***/ function(module, exports) {
-
-	module.exports = "<div style=\"padding-top: 60px\">\n    <div bind-html-compile=\"article\">\n\n    </div>\n</div>\n";
-
-/***/ },
-
-/***/ 153:
-/***/ function(module, exports) {
-
-	module.exports = "<div class=\"container\">\n    <div class=\"row\" ng-repeat=\"article in articles\">\n        <div class=\"col-md-12\">\n            <a href=\"/user/article/{{article.link}}\">\n                {{article.title}}\n            </a>\n        </div>\n    </div>\n</div>";
 
 /***/ }
 
